@@ -1,28 +1,25 @@
 extends CharacterBody2D
 class_name Player
 
+var DEBUG: bool = false;
+
 @export var speed = 400
-@export var shotDelay = 0.5
-@export var bullet : PackedScene
-#@export var shotspeed:Vector2 = Vector2(200,0)
-var shotspeed = 3000
 @export var playerID = 1
-@export var hitDamage = 20
 
 @export var sprintFactor = 1.5
 @export var sneakFactor = 0.8
 var maxHealth = 100
 var screen_size
-var DEBUG: bool = false;
 var shotDirection = 0
 var health = maxHealth
 
-# Variables for diverse cast
+# Animation Variables
 var walkAnimRight = "walk_right"
 var walkAnimLeft = "walk_left"
-var walkAnimName = "walk"
+var walkAnimName = walkAnimRight
 var idleAnimName = "idle"
 
+# Control Variables
 var rightInput = "p1_right"
 var leftInput = "p1_left"
 var upInput = "p1_up"
@@ -39,9 +36,14 @@ var crossHair
 
 # Shooting Variables
 var distFromPlayer = 30
+#var currWeapon: Weapon
+#@export var defaultWeapon: Weapon
+
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	
+	# Make crosshair
 	crossHair = crossHairObj.instantiate();
 	add_child(crossHair)
 	
@@ -51,13 +53,15 @@ func _ready():
 	# Where player starts on screen
 	position = Vector2(screen_size.x/4, screen_size.y/4)
 
+	# Calculate stats:
+	#maxHealth = baseHealth + 
+	health = maxHealth
+	
 	# Connect Health bar
 	$HealthBar.max_value = maxHealth
 	$HealthBar.value = health
 	
-	#throw error if no bullet
-	if(bullet == null): # Move this so it is not done every time.
-			push_error("No bullet assigned to Player #", playerID)
+	#currWeapon = $WeaponSingleton.GetPlayerWeapon()
 
 
 func checkHealth():
@@ -125,25 +129,13 @@ func _process(delta):
 	getAttackAngle()
 	
 	#Shooting
-	if Input.is_action_pressed(shootInput):# and $ShotTimer.is_stopped():
-		var shot
-		if(bullet != null): # Move this so it is not done every time.
-			var rotate_by = atan2(crosshairPos.x, crosshairPos.y)
-			shot = bullet.instantiate();
-			shot.rotate(rotate_by)
-			shot.position = distFromPlayer * crosshairPos.normalized()
-			shot.linear_velocity = (shotspeed * crosshairPos.normalized())
-			#shot.set_collision_layer_value(playerID, false)
-			add_child(shot)
-		$ShotTimer.start(shotDelay);
+	if Input.is_action_pressed(shootInput):
+		#currWeapon.Attack()
+		pass
 
 func _die():
-	print("ARRRGH!!! PLAYER ", str(playerID), " has died!")
-	Singleton._killPlayer(playerID);
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_parent() != self:
-		if DEBUG:
-			print("Player", str(playerID), " got shot! O.o")
-		health -= hitDamage
+		print("Player got shot! O.o")
