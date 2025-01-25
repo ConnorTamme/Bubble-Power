@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvetq7ixe7r7f"]
+[gd_scene load_steps=3 format=3 uid="uid://bvetq7ixe7r7f"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_e5mpq"]
+[ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://icon.svg" id="2_ysn0g"]
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_e5mpq")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ysn0g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
