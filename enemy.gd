@@ -6,12 +6,15 @@ extends Area2D
 var invincible = false
 var canAttack = true
 var player
+var weapon
 
 static var projectileScene  = preload("res://projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("../Player")
+	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.shotgun, {})
+	add_child(weapon)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,18 +36,8 @@ func die() -> void:
 	queue_free()
 
 func debug_damage() -> void:
-	fireGun()
+	weapon.attack(Vector2(player.position.x - position.x, player.position.y - position.y))
 
-func fireGun() -> void:
-	if !canAttack:
-		return
-	canAttack = false
-	$attackDelay.start()
-	var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
-	var projectile = projectileScene.instantiate().set_parameters(direction/direction.length(), 400, 1)
-	projectile.set_name("bullet")
-	projectile.global_transform = global_transform
-	get_parent().add_child(projectile)
 
 func move(delta: float) -> void:
 	var direction = Vector2(player.position.x - position.x, player.position.y - position.y)

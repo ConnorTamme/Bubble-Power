@@ -5,9 +5,9 @@ class_name Weapon
 var isPlayerWeapon: bool
 var stats
 var modifier
+var canAttack = true
 
-
-static func create_player_weapon(weaponType: WeaponType) -> Weapon:
+static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	var weapon_scene: PackedScene = load(str("res://",str(weaponType),".tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = true
@@ -16,19 +16,25 @@ static func create_player_weapon(weaponType: WeaponType) -> Weapon:
 	return weapon
 
 #Need modifier struct
-static func create_enemy_weapon(weaponType: WeaponType, enemyModifier: String) -> Weapon:
-	var weapon_scene: PackedScene = load(str("res://",weaponType,".tscn"))
+static func create_enemy_weapon(weaponType: Enums.WeaponType, enemyModifier) -> Weapon:
+	print(str("res://",Enums.WeaponType.keys()[weaponType],".tscn"))
+	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = false
 	weapon.stats = WeaponManager.lookupStats(weaponType)
-	weapon.modifer = enemyModifier
+	weapon.modifier = enemyModifier
 	return weapon
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func attack(direction: Vector2) -> void:
+	if !canAttack:
+		return
+	canAttack = false
+	$attackDelay.start()
+	var projectile = Projectile.create_projectile(direction/direction.length(), 400, 1)
+	projectile.set_name("bullet")
+	projectile.global_transform = global_transform
+	get_parent().get_parent().add_child(projectile)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_attack_delay_timeout() -> void:
+	canAttack = true

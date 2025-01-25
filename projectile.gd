@@ -24,7 +24,7 @@ func set_parameters(direction: Vector2, speed: float, damage: float) -> Projecti
 # Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
-	pass
+	print("I exist")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
