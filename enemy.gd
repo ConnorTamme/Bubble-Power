@@ -4,7 +4,10 @@ extends Area2D
 @export var health = 2
 @export var towardsPlayer = true
 var invincible = false
+var canAttack = true
 var player
+
+static var projectileScene  = preload("res://projectile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +16,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	move(delta)
-	if Input.is_action_pressed("test"):
+	#move(delta)
+	if Input.is_action_pressed("p1_shoot"):
 		debug_damage()
 
 func takeDamage(damage: float) -> void:
@@ -30,7 +33,18 @@ func die() -> void:
 	queue_free()
 
 func debug_damage() -> void:
-	takeDamage(1)
+	fireGun()
+
+func fireGun() -> void:
+	if !canAttack:
+		return
+	canAttack = false
+	$attackDelay.start()
+	var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
+	var projectile = projectileScene.instantiate().set_parameters(direction/direction.length(), 400, 1)
+	projectile.set_name("bullet")
+	projectile.global_transform = global_transform
+	get_parent().add_child(projectile)
 
 func move(delta: float) -> void:
 	var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
@@ -43,3 +57,12 @@ func move(delta: float) -> void:
 	
 func _on_invincible_delay_timeout() -> void:
 	invincible = false
+
+
+func _on_body_entered(body: Node2D) -> void:
+	takeDamage(body.damage)
+	body.queue_free()
+
+
+func _on_attack_delay_timeout() -> void:
+	canAttack = true
