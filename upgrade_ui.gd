@@ -25,12 +25,24 @@ var upgradeC = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	CycleUpgrades()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func CycleUpgrades():
+	# one should be defensive, one offensive
+	GetDefenseUpgrade($UpgradeABtn)
+	pass
+	
+func GetDefenseUpgrade(btn: Button):
+	var i = randi() % StaticStats.ENT_STATS.size()
+	var defStat = StaticStats.ENT_STATS.keys()[i]
+	btn.text = defenceUpgradeText[StaticStats.ENT_STATS[defStat]]
 
+
+# Button Methods for toggling continue
 func _on_upgrade_a_btn_toggled(toggled_on: bool) -> void:
 	upgradeA = toggled_on
 	if(toggled_on):
