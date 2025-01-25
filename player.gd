@@ -3,15 +3,25 @@ class_name Player
 
 var DEBUG: bool = false;
 
-@export var speed = 400
+@export var baseMoveSpeed = 400
+var moveSpeed
 @export var playerID = 1
 
 @export var sprintFactor = 1.5
 @export var sneakFactor = 0.8
-var maxHealth = 100
+@export var baseHealth = 100
+var maxHealth
+var health
+
+@export var baseShield = 0
+var maxShield
+var shield
+
+
+
 var screen_size
 var shotDirection = 0
-var health = maxHealth
+
 
 # Animation Variables
 var walkAnimRight = "walk_right"
@@ -54,8 +64,7 @@ func _ready():
 	position = Vector2(screen_size.x/4, screen_size.y/4)
 
 	# Calculate stats:
-	#maxHealth = baseHealth + 
-	health = maxHealth
+	SetUpStats()
 	
 	# Connect Health bar
 	$HealthBar.max_value = maxHealth
@@ -63,6 +72,12 @@ func _ready():
 	
 	#currWeapon = $WeaponSingleton.GetPlayerWeapon()
 
+func SetUpStats():
+	health = baseHealth + StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.HEALTH)
+	maxHealth = health
+	shield = baseShield + StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.SHIELD)
+	maxShield = shield
+	moveSpeed = baseMoveSpeed + StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.MOVE_SPEED)
 
 func checkHealth():
 	if(health < 0):
@@ -96,7 +111,7 @@ func movePlayer(delta):
 		moveSpeedFactor = 1
 
 	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed * moveSpeedFactor
+		velocity = velocity.normalized() * moveSpeed * moveSpeedFactor
 		shotDirection = velocity.angle()
 		$AnimatedSprite2D.animation = walkAnimName
 	else:
