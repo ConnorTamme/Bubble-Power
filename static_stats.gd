@@ -41,3 +41,21 @@ func GetWeaponStatModifier(stat: WEAPON_STATS):
 		return weapon_modifiers[stat]
 	else:
 		print("didn't find that stat")
+		
+func SetPlayerStatModifier(stat: ENT_STATS, change):
+	if(player_modifiers.hasKey(stat)):
+		player_modifiers[stat] = player_modifiers[stat] + change
+	else:
+		print("didn't find that stat")
+
+func SetEnemyStatModifier(stat: ENT_STATS, change):
+	if(enemy_modifiers.hasKey(stat)):
+		enemy_modifiers[stat] = enemy_modifiers[stat] + change
+	else:
+		print("didn't find that stat")
+
+func SetWeaponStatModifier(stat: WEAPON_STATS, change):
+	if(weapon_modifiers.hasKey(stat)):
+		weapon_modifiers[stat] = weapon_modifiers[stat] + change
+	else:
+		print("didn't find that stat")	
