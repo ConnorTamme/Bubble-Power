@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Singleton="*res://singleton.gd"
 WeaponManager="*res://WeaponManager.gd"
 WeaponType="*res://WeaponType_Enum.gd"
+StaticStats="*res://static_stats.gd"
 
 [input]
 
