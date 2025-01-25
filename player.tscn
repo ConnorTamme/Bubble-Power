@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://txylmowsjix5"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_62uao"]
+[ext_resource type="Texture2D" uid="uid://b5oqtse1wmhcm" path="res://yellowNinja_idle.png" id="1_kq2au"]
+[ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="2_v24g0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se44r"]
+size = Vector2(20, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12jto"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(45, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj4t4"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(173, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifp3x"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(301, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xchs"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(429, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3ih8"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(557, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_holn1"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(685, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mn7i"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(813, 60, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xqn4"]
+atlas = ExtResource("1_kq2au")
+region = Rect2(941, 60, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uu36j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12jto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj4t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifp3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xchs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3ih8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_holn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mn7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xqn4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfbku"]
+bg_color = Color(0.736144, 0, 0.125818, 1)
+
+[node name="CharacterController2D" type="CharacterBody2D"]
+disable_mode = 2
+motion_mode = 1
+platform_wall_layers = 1
+script = ExtResource("1_62uao")
+bullet = ExtResource("2_v24g0")
+crossHairObj = ExtResource("2_v24g0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_se44r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_uu36j")
+animation = &"idle"
+
+[node name="ShotTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_direction = 2
+offset_left = -22.0
+offset_top = -39.0
+offset_right = 22.0
+offset_bottom = -29.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_hfbku")
+step = 0.1
+value = 100.0
+show_percentage = false
