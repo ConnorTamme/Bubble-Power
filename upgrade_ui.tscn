@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://o21bcjj4dow1"]
+
+[ext_resource type="Script" path="res://upgrade_ui.gd" id="1_04tsd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nktgf"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="Upgrade UI" type="Node2D"]
+script = ExtResource("1_04tsd")
+
+[node name="UpgradeABtn" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 30.0
+offset_right = 500.0
+offset_bottom = 155.0
+toggle_mode = true
+text = "UPGRADE A"
+
+[node name="UpgradeBBtn" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 170.0
+offset_right = 500.0
+offset_bottom = 295.0
+toggle_mode = true
+text = "UPGRADE B"
+
+[node name="UpgradeCBtn" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 310.0
+offset_right = 500.0
+offset_bottom = 435.0
+toggle_mode = true
+text = "UPGRADE C"
+
+[node name="SelectAndContinue" type="Button" parent="."]
+offset_left = 50.0
+offset_top = 465.0
+offset_right = 500.0
+offset_bottom = 615.0
+disabled = true
+text = "SELECT & CONTINUE"
+
+[node name="StatsText" type="RichTextLabel" parent="."]
+offset_left = 540.0
+offset_top = 30.0
+offset_right = 1130.0
+offset_bottom = 615.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nktgf")
+
+[connection signal="toggled" from="UpgradeABtn" to="." method="_on_upgrade_a_btn_toggled"]
+[connection signal="toggled" from="UpgradeBBtn" to="." method="_on_upgrade_b_btn_toggled"]
+[connection signal="toggled" from="UpgradeCBtn" to="." method="_on_upgrade_c_btn_toggled"]
+[connection signal="button_up" from="SelectAndContinue" to="." method="_on_select_and_continue_button_up"]
