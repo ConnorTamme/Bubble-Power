@@ -18,13 +18,6 @@ static func create_projectile(direction: Vector2, speed: float, damage: float, r
 	proj.range = range
 	return proj
 	
-func set_parameters(direction: Vector2, speed: float, damage: float, range:float) -> Projectile:
-	self.direction = direction
-	self.speed = speed
-	self.damage = damage
-	self.range = range
-	return self
-# Called when the node enters the scene tree for the first time.
 
 func _ready() -> void:
 	start_pos = Vector2(position.x, position.y)

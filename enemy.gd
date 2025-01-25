@@ -9,13 +9,13 @@ var weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
 var ai_state = states.READY
 @export var enemyStats = {
-	Enums.ENT_STATS.RANGE: 100000
+	range: 800
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("../Player")
-	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.shotgun, {})
+	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.shotgun)
 	add_child(weapon)
 
 
@@ -45,10 +45,10 @@ func move(delta: float) -> void:
 	match ai_state:
 		states.READY:
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[Enums.ENT_STATS.RANGE]/2:
+			if player_location.length() < enemyStats[range]/2:
 				ai_state = states.RETREAT
 				$maxRetreatTime.start()
-			elif player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+			elif player_location.length() > enemyStats[range]:
 				ai_state = states.APPROACH
 			else:
 				ai_state = states.PREPARE
@@ -60,7 +60,7 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[Enums.ENT_STATS.RANGE]:
+			if player_location.length() < enemyStats[range]:
 				ai_state = states.PREPARE
 				$prepareTime.start()
 		states.RETREAT:
@@ -70,9 +70,9 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+			if player_location.length() > enemyStats[range]:
 				ai_state = states.APPROACH
-			elif player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+			elif player_location.length() > enemyStats[range]:
 				ai_state = states.PREPARE
 				$prepareTime.start()
 	

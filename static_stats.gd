@@ -1,7 +1,7 @@
 extends Node
 
-enum ENT_STATS {HEALTH, MOVE_SPEED, SHIELD, RANGE}
-enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY}
+enum ENT_STATS {HEALTH, MOVE_SPEED, SHIELD}
+enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY, ATTACK_SPEED}
 
 var initValAdd = 0
 
@@ -23,6 +23,7 @@ var player_weapon_modifiers = {
 	WEAPON_STATS.RANGE : initValAdd,
 	WEAPON_STATS.PELLET_COUNT : initValAdd,
 	WEAPON_STATS.ACCURACY : initValAdd,
+	WEAPON_STATS.ATTACK_SPEED : initValAdd
 	}
 	
 var enemy_weapon_modifiers = {
@@ -31,6 +32,7 @@ var enemy_weapon_modifiers = {
 	WEAPON_STATS.RANGE : initValAdd,
 	WEAPON_STATS.PELLET_COUNT : initValAdd,
 	WEAPON_STATS.ACCURACY : initValAdd,
+	WEAPON_STATS.ATTACK_SPEED : initValAdd
 	}
 	
 	#Entity Stats

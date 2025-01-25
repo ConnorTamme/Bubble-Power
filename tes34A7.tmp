@@ -12,7 +12,7 @@ position = Vector2(1049, 530)
 texture = ExtResource("1_6pilx")
 
 [node name="Enemy" parent="." instance=ExtResource("2_a55p0")]
-position = Vector2(48, 53)
+position = Vector2(881, 448)
 collision_layer = 0
 collision_mask = 0
 moveSpeed = 80

@@ -4,10 +4,11 @@ var statsTable = {
 	Enums.WeaponType.shotgun : {
 		Enums.WEAPON_STATS.DAM : 1,
 		Enums.WEAPON_STATS.SPEED : 400,
-		Enums.WEAPON_STATS.RANGE : 800,
+		Enums.WEAPON_STATS.RANGE : 1000,
 		Enums.WEAPON_STATS.PELLET_COUNT : 6,
-		Enums.WEAPON_STATS.ACCURACY : 0.5,
-	} #need stats struct
+		Enums.WEAPON_STATS.ACCURACY : 0.7,
+		Enums.WEAPON_STATS.ATTACK_SPEED : 5
+	}
 }
 
 func lookupStats(type: Enums.WeaponType) -> Dictionary:
