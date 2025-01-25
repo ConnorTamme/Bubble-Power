@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://txylmowsjix5"]
+[gd_scene load_steps=23 format=3 uid="uid://txylmowsjix5"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_62uao"]
 [ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="2_v24g0"]
@@ -119,7 +119,10 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfbku"]
-bg_color = Color(0.736144, 0, 0.125818, 1)
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tv17k"]
+bg_color = Color(0.0499457, 0.820884, 1, 1)
 
 [node name="CharacterController2D" type="CharacterBody2D"]
 disable_mode = 2
@@ -144,6 +147,17 @@ offset_top = -39.0
 offset_right = 22.0
 offset_bottom = -29.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_hfbku")
+step = 0.1
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+layout_direction = 2
+offset_left = -22.0
+offset_top = -53.0
+offset_right = 22.0
+offset_bottom = -43.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_tv17k")
 step = 0.1
 value = 100.0
 show_percentage = false

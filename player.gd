@@ -69,6 +69,9 @@ func _ready():
 	# Connect Health bar
 	$HealthBar.max_value = maxHealth
 	$HealthBar.value = health
+	#Connect Shield bar
+	$ShieldBar.max_value = maxShield
+	$ShieldBar.value = shield
 	
 	#currWeapon = $WeaponSingleton.GetPlayerWeapon()
 
