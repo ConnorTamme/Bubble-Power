@@ -157,3 +157,5 @@ func _die():
 func _on_body_entered(body: Node2D) -> void:
 	if body.get_parent() != self:
 		print("Player got shot! O.o")
+		# if shield, hurt shield. 
+		# else, hurt health
