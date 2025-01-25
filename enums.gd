@@ -2,3 +2,4 @@ extends Node
 
 enum WeaponType {shotgun}
 enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY}
+enum ENT_STATS {HEALTH, MOVE_SPEED, SHIELD, RANGE}

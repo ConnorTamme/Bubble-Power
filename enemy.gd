@@ -4,11 +4,13 @@ extends Area2D
 @export var health = 2
 @export var towardsPlayer = true
 var invincible = false
-var canAttack = true
 var player
 var weapon
-
-static var projectileScene  = preload("res://projectile.tscn")
+enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
+var ai_state = states.READY
+@export var enemyStats = {
+	Enums.ENT_STATS.RANGE: 100000
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +21,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#move(delta)
+	move(delta)
 	if Input.is_action_pressed("p1_shoot"):
 		debug_damage()
 
@@ -40,13 +42,39 @@ func debug_damage() -> void:
 
 
 func move(delta: float) -> void:
-	var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
-	direction = direction/direction.length()
-	direction = direction * moveSpeed * delta
-	if (!towardsPlayer):
-		direction *= -1
-	position.x += direction.x
-	position.y += direction.y
+	match ai_state:
+		states.READY:
+			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
+			if player_location.length() < enemyStats[Enums.ENT_STATS.RANGE]/2:
+				ai_state = states.RETREAT
+				$maxRetreatTime.start()
+			elif player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+				ai_state = states.APPROACH
+			else:
+				ai_state = states.PREPARE
+				$prepareTime.start()
+		states.APPROACH:
+			var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
+			direction = direction/direction.length()
+			direction = direction * moveSpeed * delta
+			position.x += direction.x
+			position.y += direction.y
+			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
+			if player_location.length() < enemyStats[Enums.ENT_STATS.RANGE]:
+				ai_state = states.PREPARE
+				$prepareTime.start()
+		states.RETREAT:
+			var direction = Vector2(player.position.x - position.x, player.position.y - position.y)
+			direction = direction/direction.length()
+			direction = direction * moveSpeed * delta * -1
+			position.x += direction.x
+			position.y += direction.y
+			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
+			if player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+				ai_state = states.APPROACH
+			elif player_location.length() > enemyStats[Enums.ENT_STATS.RANGE]:
+				ai_state = states.PREPARE
+				$prepareTime.start()
 	
 func _on_invincible_delay_timeout() -> void:
 	invincible = false
@@ -57,5 +85,16 @@ func _on_body_entered(body: Node2D) -> void:
 	body.queue_free()
 
 
-func _on_attack_delay_timeout() -> void:
-	canAttack = true
+func _on_recover_time_timeout() -> void:
+	ai_state = states.READY
+
+
+func _on_prepare_time_timeout() -> void:
+	weapon.attack(Vector2(player.position.x - position.x, player.position.y - position.y))
+	$recoverTime.start()
+
+
+func _on_max_retreat_time_timeout() -> void:
+	if ai_state == states.RETREAT:
+		ai_state = states.PREPARE
+		$prepareTime.start()
