@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwvedr0w82n7i"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_ntjti"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxvp3"]
+radius = 5.0
+height = 16.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+mass = 0.001
+gravity_scale = 0.0
+continuous_cd = 1
+script = ExtResource("1_ntjti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dxvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
