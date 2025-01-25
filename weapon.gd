@@ -6,6 +6,7 @@ var isPlayerWeapon: bool
 var stats
 var modifier
 var canAttack = true
+var rng = RandomNumberGenerator.new()
 
 static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	var weapon_scene: PackedScene = load(str("res://",str(weaponType),".tscn"))
@@ -30,10 +31,17 @@ func attack(direction: Vector2) -> void:
 		return
 	canAttack = false
 	$attackDelay.start()
-	var projectile = Projectile.create_projectile(direction/direction.length(), 400, 1)
-	projectile.set_name("bullet")
-	projectile.global_transform = global_transform
-	get_parent().get_parent().add_child(projectile)
+	direction = direction/direction.length()
+	for i in stats[Enums.WEAPON_STATS.PELLET_COUNT]:
+		var projectile = Projectile.create_projectile(direction.rotated(rng.randf_range(-1 + stats[Enums.WEAPON_STATS.ACCURACY],
+		 1 - stats[Enums.WEAPON_STATS.ACCURACY])),
+		 rng.randf_range(stats[Enums.WEAPON_STATS.SPEED]*0.66,stats[Enums.WEAPON_STATS.SPEED]),
+		 stats[Enums.WEAPON_STATS.DAM],
+		 stats[Enums.WEAPON_STATS.RANGE])
+		projectile.set_name("bullet")
+		projectile.global_transform = global_transform
+		get_parent().get_parent().add_child(projectile)
+	
 
 
 func _on_attack_delay_timeout() -> void:
