@@ -40,7 +40,7 @@ offset_bottom = 615.0
 disabled = true
 text = "SELECT & CONTINUE"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="StatsText" type="RichTextLabel" parent="."]
 offset_left = 540.0
 offset_top = 30.0
 offset_right = 1130.0
@@ -50,3 +50,4 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nktgf")
 [connection signal="toggled" from="UpgradeABtn" to="." method="_on_upgrade_a_btn_toggled"]
 [connection signal="toggled" from="UpgradeBBtn" to="." method="_on_upgrade_b_btn_toggled"]
 [connection signal="toggled" from="UpgradeCBtn" to="." method="_on_upgrade_c_btn_toggled"]
+[connection signal="button_up" from="SelectAndContinue" to="." method="_on_select_and_continue_button_up"]

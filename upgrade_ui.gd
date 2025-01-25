@@ -2,6 +2,7 @@ extends Node2D
 
 var screen_size
 var DEBUG = true
+var statText: String 
 
 var defenceUpgradeText = {
 	StaticStats.ENT_STATS.HEALTH : "MAX HEALTH++",
@@ -26,14 +27,44 @@ var upgradeC = false;
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	CycleUpgrades()
+	SetStatsText()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func SetStatsText():
+	statText = "PLAYER STAT MODIFIERS: "
+	statText += "\n\t- MAX HEALTH: "
+	statText += str(StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.HEALTH))
+	statText += "\n\t- MAX SHIELD: "
+	statText += str(StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.SHIELD))
+	statText += "\n\t- MOVE SPEED: "
+	statText += str(StaticStats.GetPlayerStatModifier(StaticStats.ENT_STATS.MOVE_SPEED))
+	
+	statText += "\n\n\nPLAYER WEAPON MODIFIERS:"
+	statText += "\n\t- DAMAGE: "
+	statText += str(StaticStats.GetPlayerWeaponStatModifier(StaticStats.WEAPON_STATS.DAM))
+	statText += "\n\t- ATTACK SPEED: "
+	statText += str(StaticStats.GetPlayerWeaponStatModifier(StaticStats.WEAPON_STATS.SPEED))
+	statText += "\n\t- RANGE: "
+	statText += str(StaticStats.GetPlayerWeaponStatModifier(StaticStats.WEAPON_STATS.RANGE))
+	statText += "\n\t- PROJECTILE COUNT: "
+	statText += str(StaticStats.GetPlayerWeaponStatModifier(StaticStats.WEAPON_STATS.PELLET_COUNT))
+	statText += "\n\t- ACCURACY: "
+	statText += str(StaticStats.GetPlayerWeaponStatModifier(StaticStats.WEAPON_STATS.ACCURACY))
+	
+	
+	
+	
+	$StatsText.text = statText
+	
+
 func CycleUpgrades():
 	# one should be defensive, one offensive
 	GetDefenseUpgrade($UpgradeABtn)
+	GetOffenseUpgrade($UpgradeBBtn)
+	GetOffenseUpgrade($UpgradeCBtn)
 	pass
 	
 func GetDefenseUpgrade(btn: Button):
@@ -41,33 +72,28 @@ func GetDefenseUpgrade(btn: Button):
 	var defStat = StaticStats.ENT_STATS.keys()[i]
 	btn.text = defenceUpgradeText[StaticStats.ENT_STATS[defStat]]
 
+func GetOffenseUpgrade(btn: Button):
+	var i = randi() % StaticStats.WEAPON_STATS.size()
+	var offStat = StaticStats.WEAPON_STATS.keys()[i]
+	btn.text = offenceUpgradeText[StaticStats.WEAPON_STATS[offStat]]
 
 # Button Methods for toggling continue
 func _on_upgrade_a_btn_toggled(toggled_on: bool) -> void:
-	upgradeA = toggled_on
 	if(toggled_on):
 		$UpgradeBBtn.button_pressed = false
-		upgradeB = false
 		$UpgradeCBtn.button_pressed = false
-		upgradeC = false
 	SetContinueBtnState()
 	
 func _on_upgrade_b_btn_toggled(toggled_on: bool) -> void:
-	upgradeB = toggled_on
 	if(toggled_on):
 		$UpgradeABtn.button_pressed = false
-		upgradeA = false
 		$UpgradeCBtn.button_pressed = false
-		upgradeC = false
 	SetContinueBtnState()
 	
 func _on_upgrade_c_btn_toggled(toggled_on: bool) -> void:
-	upgradeC = toggled_on
 	if(toggled_on):
 		$UpgradeABtn.button_pressed = false
-		upgradeA = false
 		$UpgradeBBtn.button_pressed = false
-		upgradeB = false
 	SetContinueBtnState()
 
 func SetContinueBtnState():
@@ -76,4 +102,15 @@ func SetContinueBtnState():
 		print("Button booleans:", upgradeA, upgradeB, upgradeC)
 		print("Contiue should be disabled: ", !((upgradeA && !upgradeB && !upgradeC) || (!upgradeA && upgradeB && !upgradeC) || (!upgradeA && !upgradeB && upgradeC)))
 	
+	upgradeA = $UpgradeABtn.button_pressed
+	upgradeB = $UpgradeBBtn.button_pressed
+	upgradeC = $UpgradeCBtn.button_pressed
+	
 	$SelectAndContinue.disabled = !((upgradeA && !upgradeB && !upgradeC) || (!upgradeA && upgradeB && !upgradeC) || (!upgradeA && !upgradeB && upgradeC))
+
+
+
+func _on_select_and_continue_button_up() -> void:
+	# Process Upgrades
+	
+	pass # Replace with function body.
