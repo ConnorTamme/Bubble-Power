@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dgra47m6d6tid" path="res://walk_left_player.png" id="6_6yr57"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se44r"]
-size = Vector2(20, 36)
+size = Vector2(43, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ek1j"]
 atlas = ExtResource("3_po64j")
@@ -129,6 +129,7 @@ script = ExtResource("1_62uao")
 crossHairObj = ExtResource("2_v24g0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, -3)
 shape = SubResource("RectangleShape2D_se44r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
