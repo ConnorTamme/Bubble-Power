@@ -36,5 +36,22 @@ position = Vector2(8, 16)
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="VictoryBanner" parent="EndTimer" instance=ExtResource("5_44vrk")]
+visible = false
+z_index = 1
+offset_left = 220.0
+offset_top = 175.0
+offset_right = 605.0
+offset_bottom = 275.0
+scale = Vector2(2, 2)
+
+[node name="DeathBanner" parent="EndTimer" instance=ExtResource("6_mp7xb")]
+visible = false
+offset_left = 162.0
+offset_top = 176.0
+offset_right = 570.0
+offset_bottom = 276.0
+scale = Vector2(2, 2)
+
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]
