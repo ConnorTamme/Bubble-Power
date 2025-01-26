@@ -138,7 +138,7 @@ func movePlayer(delta):
 # Draw a crosshair at the vector, normalized from user times a distance.
 func getAttackAngle():
 	var mouse = get_viewport().get_mouse_position()
-	var using_controller = true
+	var using_controller = Singleton.usingController
 	var vecX
 	var vecY
 	if using_controller:
