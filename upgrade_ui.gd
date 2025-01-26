@@ -33,11 +33,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("controller_y"):
+	if Input.is_action_pressed("controller_x"):
 		$UpgradeABtn.button_pressed = true
 		$UpgradeBBtn.button_pressed = false
 		$UpgradeCBtn.button_pressed = false
-	if Input.is_action_pressed("controller_x"):
+	if Input.is_action_pressed("controller_y"):
 		$UpgradeABtn.button_pressed = false
 		$UpgradeBBtn.button_pressed = true
 		$UpgradeCBtn.button_pressed = false
