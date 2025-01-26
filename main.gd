@@ -6,6 +6,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MobTimer.start()
+	GlobalSignals.died.connect(_on_player_death)
 	pass # Replace with function body.
 
 
@@ -38,3 +39,7 @@ func _on_mob_timer_timeout() -> void:
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(e)
+
+func _on_player_death() -> void:
+	$MobTimer.stop()
+	

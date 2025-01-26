@@ -21,6 +21,7 @@ Singleton="*res://singleton.gd"
 WeaponManager="*res://WeaponManager.gd"
 Enums="*res://enums.gd"
 StaticStats="*res://static_stats.gd"
+GlobalSignals="*res://Signal.gd"
 
 [input]
 

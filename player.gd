@@ -3,6 +3,7 @@ class_name Player
 
 var DEBUG: bool = false;
 
+
 @export var baseMoveSpeed = 400
 var moveSpeed
 @export var playerID = 1
@@ -12,6 +13,7 @@ var moveSpeed
 @export var baseHealth = 100
 var maxHealth
 var health
+var alive = true
 
 @export var baseShield = 0
 var maxShield
@@ -88,8 +90,7 @@ func checkHealth():
 	if(health < 0):
 		health = 0;
 	$HealthBar.value = health 
-	if(health <= 0):
-		_die()
+
 
 
 func movePlayer(delta):
@@ -140,6 +141,8 @@ func getAttackAngle():
 	crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
 
 func _process(delta):
+	if !alive:
+		return
 	if DEBUG:
 		print("Player position: ", position)
 	
@@ -152,11 +155,30 @@ func _process(delta):
 		currWeapon.attack(crossHair.position)
 		pass
 
-func _die():
-	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
+	takeDamage(body.damage)
+	body.collided()
 	if body.get_parent() != self:
 		print("Player got shot! O.o")
 		# if shield, hurt shield. 
 		# else, hurt health
+
+func takeDamage(damage: float) -> void:
+	health -= damage
+	if (health < 0):
+		die()
+
+func die() -> void:
+	GlobalSignals.died.emit()
+	alive = false
+	$deathTimer.start()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	takeDamage(body.damage)
+	body.collided()
+
+
+func _on_death_timer_timeout() -> void:
+	queue_free()

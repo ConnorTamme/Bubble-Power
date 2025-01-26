@@ -5,13 +5,15 @@ var invincible = false
 var player
 @export var weaponType : Enums.WeaponType
 
+var playerAlive: bool = true
 var weapon : Weapon
-enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
+enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER, PLAYER_DEAD}
 var ai_state = states.READY
 @export var enemyStats = {"health": 2,"moveSpeed": 250,"range": 800, "recoveryTime":2, "prepareTime":1}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalSignals.died.connect(_on_player_death)
 	player = get_node("../Player")
 	weapon = Weapon.create_enemy_weapon(weaponType)
 	enemyStats[range] = weapon.get_range() - 200
@@ -105,3 +107,11 @@ func _on_max_retreat_time_timeout() -> void:
 	if ai_state == states.RETREAT:
 		ai_state = states.PREPARE
 		startPrepareTimer()
+
+func _on_player_death() -> void:
+	playerAlive = false
+	ai_state = states.PLAYER_DEAD
+	$prepareTime.stop()
+	$recoverTime.stop()
+	$maxRetreatTime.stop()
+	
