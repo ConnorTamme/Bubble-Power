@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://3ch32u584reg"]
+
+[ext_resource type="Script" path="res://Scripts/level_scene_manager.gd" id="1_wv7s5"]
+[ext_resource type="PackedScene" uid="uid://c6w1djxemdy6v" path="res://Scenes/main.tscn" id="2_rv007"]
+[ext_resource type="PackedScene" uid="uid://e1wwv10lq3af" path="res://Scenes/testing.tscn" id="3_qv6uc"]
+
+[node name="LevelSceneManager" type="Node"]
+script = ExtResource("1_wv7s5")
+editor_scenes = Array[PackedScene]([ExtResource("2_rv007"), ExtResource("3_qv6uc")])

@@ -9,7 +9,7 @@ var canAttack = true
 var rng = RandomNumberGenerator.new()
 
 static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
-	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
+	var weapon_scene: PackedScene = load(str("res://Scenes/weapon.tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = true
 	weapon.stats = WeaponManager.lookupStats(weaponType)
@@ -18,7 +18,7 @@ static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
 
 #Need modifier struct
 static func create_enemy_weapon(weaponType: Enums.WeaponType) -> Weapon:
-	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
+	var weapon_scene: PackedScene = load(str("res://Scenes/weapon.tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = false
 	weapon.stats = WeaponManager.lookupStats(weaponType)

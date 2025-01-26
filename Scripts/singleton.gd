@@ -37,4 +37,4 @@ func launch_game(playing, characters):
 		playerIsAlive[i] = playing[i]
 		if(playing[i]):
 			playerCount += 1
-		get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+		get_tree().change_scene_to_file("res://Scenes/main.tscn")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://e1wwv10lq3af"]
 
-[ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://icon.svg" id="1_6pilx"]
-[ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_a55p0"]
-[ext_resource type="PackedScene" uid="uid://cinly8233li5b" path="res://Boss.tscn" id="3_6at16"]
+[ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://Assets/icon.svg" id="1_6pilx"]
+[ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://Scenes/enemy.tscn" id="2_a55p0"]
+[ext_resource type="PackedScene" uid="uid://cinly8233li5b" path="res://Scenes/Boss.tscn" id="3_6at16"]
 
 [node name="Testing" type="Node2D"]
 

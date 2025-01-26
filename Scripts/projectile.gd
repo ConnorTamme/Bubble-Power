@@ -11,9 +11,9 @@ var isMelee
 #Pretty sure we will need to set the mask in here too so it only targets players or enemies depending on who shot it
 
 static func create_projectile(direction: Vector2, speed: float, damage: float, range:float, isPlayerProjectile: bool, isMelee: bool) -> Projectile:
-	var proj_scene: PackedScene = load("res://projectile.tscn")
+	var proj_scene: PackedScene = load("res://Scenes/projectile.tscn")
 	if isMelee:
-		proj_scene = load("res://melee_projectile.tscn")
+		proj_scene = load("res://Scenes/melee_projectile.tscn")
 	
 	var proj: Projectile = proj_scene.instantiate()
 	proj.direction = direction
@@ -28,7 +28,7 @@ static func create_projectile(direction: Vector2, speed: float, damage: float, r
 	return proj
 	
 static func create_melee_projectile(direction: Vector2, speed: float, damage: float, range:float, isPlayerProjectile: bool) -> Projectile:
-	var proj_scene: PackedScene = load("res://melee_projectile.tscn")
+	var proj_scene: PackedScene = load("res://Scenes/melee_projectile.tscn")
 	var proj: Projectile = proj_scene.instantiate()
 	proj.direction = direction
 	proj.speed = speed
