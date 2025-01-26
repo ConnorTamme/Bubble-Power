@@ -1,7 +1,0 @@
-extends Node
-
-enum WeaponType {shotgun, sword, NOVA}
-
-enum ENEMY_TYPE {SLOW, MEDIUM, FAST}
-enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY, ATTACK_SPEED}
-enum ENT_STATS {HEALTH, MOVE_SPEED, SHIELD}
