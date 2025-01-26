@@ -1,7 +1,6 @@
 extends Node2D
 
-#@onready var enemy = preload("res://enemy.tscn")
-@export var enemy :PackedScene
+@onready var enemy = preload("res://enemy.tscn")
 @export var mob_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
