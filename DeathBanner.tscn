@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwl8wr0l0ypb6"]
 
 [ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://icon.svg" id="1_6k1cm"]
-[ext_resource type="Texture2D" uid="uid://du8kqjsbhc8o0" path="res://You_Burst_text.png" id="2_1ycy8"]
+[ext_resource type="Texture2D" uid="uid://bydtp8702d0u8" path="res://You_Burst_text.png" id="2_1ycy8"]
 
 [node name="VictoryBanner" type="BoxContainer"]
 offset_right = 400.0
