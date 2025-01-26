@@ -2,8 +2,8 @@
 Anthony Blower - sleep deprived   
 Connor Tamme - can't handle spice  
 Adhyan Patel - git wizard  
-Jooseph Medernach - controller support  
-Siddharth Padakanti - art direction
+Jooseph Medernach - controller support    
+Siddharth Padakanti - art direction  
 Aaron Macadaeg- music and score  
 
 
