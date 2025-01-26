@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7u8g0npw7702"]
+[gd_scene load_steps=11 format=3 uid="uid://che5fntbn64ag"]
 
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="1_ux5yh"]
 [ext_resource type="Script" path="res://enemy_1b.gd" id="2_s16b7"]
-[ext_resource type="Texture2D" uid="uid://c20v84htwrynv" path="res://insect.png" id="3_3e0gm"]
-[ext_resource type="Texture2D" uid="uid://o7t7sxua7sh6" path="res://evil_bubble.png" id="4_reh5c"]
+[ext_resource type="Texture2D" uid="uid://tld1loga0giq" path="res://insect.png" id="3_3e0gm"]
+[ext_resource type="Texture2D" uid="uid://cvqmjqs5wkhs2" path="res://evil_bubble.png" id="4_reh5c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xb1e"]
 atlas = ExtResource("4_reh5c")

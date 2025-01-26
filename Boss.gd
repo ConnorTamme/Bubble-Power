@@ -24,3 +24,7 @@ func _on_attack_timer_timeout() -> void:
 func _on_recover_time_timeout() -> void:
 	ai_state = states.READY
 	$Flipper/Animator.animation = "recover"
+
+func die() -> void:
+	GlobalSignals.bossKilled.emit()
+	queue_free()

@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://tdqb1ufd3dg0"]
+[gd_scene load_steps=5 format=3 uid="uid://tdqb1ufd3dg0"]
 
 [ext_resource type="PackedScene" uid="uid://jtbgpgtgcoy3" path="res://main.tscn" id="1_oc5gi"]
 [ext_resource type="Texture2D" uid="uid://jrd4c5svtvae" path="res://s1.png" id="2_a1575"]
+[ext_resource type="PackedScene" uid="uid://che5fntbn64ag" path="res://enemy_1b.tscn" id="2_u2dwi"]
+[ext_resource type="PackedScene" uid="uid://dm4mo8m4l580c" path="res://Boss.tscn" id="3_0sqbu"]
 
 [node name="level_sewer" instance=ExtResource("1_oc5gi")]
+enemy = Array[PackedScene]([ExtResource("2_u2dwi")])
+boss = ExtResource("3_0sqbu")
 
 [node name="Background" type="Sprite2D" parent="." index="3"]
 z_index = -1

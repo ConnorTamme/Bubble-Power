@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ifhs5qaeddox"]
+[gd_scene load_steps=10 format=3 uid="uid://cuimrxqq14qde"]
 
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="1_52vvt"]
-[ext_resource type="Script" path="res://Boss.gd" id="2_nxo2j"]
-[ext_resource type="Texture2D" uid="uid://c20v84htwrynv" path="res://insect.png" id="3_rkpe0"]
+[ext_resource type="Script" path="res://Enemy1A.gd" id="2_pl6db"]
+[ext_resource type="PackedScene" uid="uid://duv4quglt7yu1" path="res://ShortRangeEnemyWeapon.tscn" id="3_1cdkg"]
+[ext_resource type="Texture2D" uid="uid://tld1loga0giq" path="res://insect.png" id="3_rkpe0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb4ob"]
 atlas = ExtResource("3_rkpe0")
@@ -53,7 +54,8 @@ animations = [{
 }]
 
 [node name="Enemy1A" instance=ExtResource("1_52vvt")]
-script = ExtResource("2_nxo2j")
+script = ExtResource("2_pl6db")
+weaponType = ExtResource("3_1cdkg")
 
 [node name="Sprite2D" parent="." index="0"]
 visible = false
