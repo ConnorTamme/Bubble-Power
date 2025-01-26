@@ -1,7 +1,7 @@
 extends Node
 
 enum ENT_STATS {HEALTH, MOVE_SPEED, SHIELD}
-enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY, ATTACK_SPEED}
+enum WEAPON_STATS {DAM, RANGE, PELLET_COUNT, ACCURACY, ATTACK_SPEED}
 
 var initValAdd = 0
 
@@ -25,7 +25,6 @@ var stat_change = {
 
 var player_weapon_modifiers = {
 	WEAPON_STATS.DAM : initValAdd,
-	WEAPON_STATS.SPEED : initValAdd,
 	WEAPON_STATS.RANGE : initValAdd,
 	WEAPON_STATS.PELLET_COUNT : initValAdd,
 	WEAPON_STATS.ACCURACY : initValAdd,
@@ -34,7 +33,6 @@ var player_weapon_modifiers = {
 	
 var enemy_weapon_modifiers = {
 	WEAPON_STATS.DAM : initValAdd,
-	WEAPON_STATS.SPEED : initValAdd,
 	WEAPON_STATS.RANGE : initValAdd,
 	WEAPON_STATS.PELLET_COUNT : initValAdd,
 	WEAPON_STATS.ACCURACY : initValAdd,
@@ -43,7 +41,6 @@ var enemy_weapon_modifiers = {
 
 var weapon_change = {
 	WEAPON_STATS.DAM : 5,
-	WEAPON_STATS.SPEED : 0.1,
 	WEAPON_STATS.RANGE : 0.1,
 	WEAPON_STATS.PELLET_COUNT : 1,
 	WEAPON_STATS.ACCURACY : 5,
@@ -55,6 +52,12 @@ func GetPlayerStatModifier(stat: ENT_STATS):
 		return player_modifiers[stat]
 	else:
 		print("didn't find that stat")
+		
+func GetStatChangeDef(stat: ENT_STATS):
+		return stat_change[stat]
+		
+func GetStatChangeOff(stat: WEAPON_STATS):
+		return weapon_change[stat]
 
 func SetPlayerStatModifier(stat: ENT_STATS):
 	if(player_modifiers.has(stat) && stat_change.has(stat)):
