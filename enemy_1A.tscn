@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuimrxqq14qde"]
+[gd_scene load_steps=10 format=3 uid="uid://ifhs5qaeddox"]
 
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="1_52vvt"]
 [ext_resource type="Script" path="res://Enemy1A.gd" id="2_pl6db"]
 [ext_resource type="PackedScene" uid="uid://duv4quglt7yu1" path="res://ShortRangeEnemyWeapon.tscn" id="3_1cdkg"]
-[ext_resource type="Texture2D" uid="uid://tld1loga0giq" path="res://insect.png" id="3_rkpe0"]
+[ext_resource type="Texture2D" uid="uid://c20v84htwrynv" path="res://insect.png" id="3_rkpe0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb4ob"]
 atlas = ExtResource("3_rkpe0")
