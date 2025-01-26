@@ -20,6 +20,7 @@ texture = ExtResource("2_ysn0g")
 shape = SubResource("CapsuleShape2D_k4rwi")
 
 [node name="invincibleDelay" type="Timer" parent="."]
+wait_time = 0.01
 one_shot = true
 
 [node name="prepareTime" type="Timer" parent="."]

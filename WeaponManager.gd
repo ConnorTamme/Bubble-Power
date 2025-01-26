@@ -7,7 +7,7 @@ var statsTable = {
 		Enums.WEAPON_STATS.RANGE : 400,
 		Enums.WEAPON_STATS.PELLET_COUNT : 6,
 		Enums.WEAPON_STATS.ACCURACY : 0.7,
-		Enums.WEAPON_STATS.ATTACK_SPEED : 5,
+		Enums.WEAPON_STATS.ATTACK_SPEED : 1,
 		"isMelee" : false
 	},
 	Enums.WeaponType.sword : {

@@ -46,13 +46,15 @@ var crossHair
 
 # Shooting Variables
 var distFromPlayer = 30
-#var currWeapon: Weapon
+@export var weaponType: Enums.WeaponType
+var currWeapon: Weapon
 #@export var defaultWeapon: Weapon
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	
+	currWeapon = Weapon.create_player_weapon(weaponType)
+	add_child(currWeapon)
 	# Make crosshair
 	crossHair = crossHairObj.instantiate();
 	add_child(crossHair)
@@ -147,7 +149,7 @@ func _process(delta):
 	
 	#Shooting
 	if Input.is_action_pressed(shootInput):
-		#currWeapon.Attack()
+		currWeapon.attack(crossHair.position)
 		pass
 
 func _die():
