@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://srxgjkqo1vlc"]
+[gd_scene load_steps=5 format=3 uid="uid://srxgjkqo1vlc"]
 
 [ext_resource type="PackedScene" uid="uid://jtbgpgtgcoy3" path="res://main.tscn" id="1_wur5l"]
-[ext_resource type="PackedScene" uid="uid://cuimrxqq14qde" path="res://enemy_1A.tscn" id="2_swn0u"]
+[ext_resource type="PackedScene" uid="uid://cuimrxqq14qde" path="res://enemy_1A.tscn" id="2_hvtks"]
 [ext_resource type="Texture2D" uid="uid://c7w7fbg8ubjif" path="res://eau_de_toilet.png" id="2_xg7ss"]
+[ext_resource type="PackedScene" uid="uid://dm4mo8m4l580c" path="res://Boss.tscn" id="3_lfg2x"]
 
 [node name="level_bathroom" instance=ExtResource("1_wur5l")]
-enemy = ExtResource("2_swn0u")
+enemy = Array[PackedScene]([ExtResource("2_hvtks")])
+boss = ExtResource("3_lfg2x")
 
 [node name="Background" type="Sprite2D" parent="." index="4"]
 z_index = -1

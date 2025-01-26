@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cra3lusqpetg6"]
+[gd_scene load_steps=4 format=3 uid="uid://cra3lusqpetg6"]
 
 [ext_resource type="Texture2D" uid="uid://cad2aejo0t8ex" path="res://flower.png" id="1_l7a12"]
-[ext_resource type="FontFile" uid="uid://qc2ww3yxu6qq" path="res://Jhon Cream.ttf" id="2_sa7gu"]
+[ext_resource type="FontFile" uid="uid://5i6rqgrqo7yg" path="res://Jhon Cream.ttf" id="2_sa7gu"]
+[ext_resource type="Texture2D" uid="uid://boeb0absrbsh" path="res://single_bubble.png" id="3_re6df"]
 
 [node name="VictoryBanner" type="BoxContainer"]
 offset_right = 400.0
@@ -23,7 +24,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.319823, 0.527252, 1, 1)
 theme_override_fonts/font = ExtResource("2_sa7gu")
 theme_override_font_sizes/font_size = 40
-text = "VICTORY!"
+text = "Squeaky 
+Clean!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -37,3 +39,14 @@ position = Vector2(25, 50)
 scale = Vector2(4, 4)
 texture = ExtResource("1_l7a12")
 flip_h = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(182, 303)
+amount = 300
+lifetime = 2.5
+texture = ExtResource("3_re6df")
+direction = Vector2(0, -100)
+gravity = Vector2(0, 90)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0

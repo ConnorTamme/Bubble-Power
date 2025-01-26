@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://carpa0glhaw07" path="res://PlayerWeapon.tscn" id="3_bwckh"]
 [ext_resource type="Texture2D" uid="uid://w52ydfgbffeq" path="res://death_animation_player.png" id="3_kdh76"]
 [ext_resource type="Texture2D" uid="uid://b7g8cwsdc1vqw" path="res://bubbles.png" id="3_po64j"]
-[ext_resource type="Texture2D" uid="uid://chupaj5c2em7p" path="res://walk_right_player.png" id="5_ad1qb"]
-[ext_resource type="Texture2D" uid="uid://dt3spvrvkv1eh" path="res://walk_left_player.png" id="6_6yr57"]
+[ext_resource type="Texture2D" uid="uid://blrpeuldajw52" path="res://walk_right_player.png" id="5_ad1qb"]
+[ext_resource type="Texture2D" uid="uid://bk1hi68oqk8r0" path="res://walk_left_player.png" id="6_6yr57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1hp5"]
 atlas = ExtResource("3_kdh76")

@@ -5,6 +5,7 @@ var invincible = false
 var player
 @export var weaponType : PackedScene
 
+var screen_size
 var playerAlive: bool = true
 var weapon : Weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER, PLAYER_DEAD}
@@ -13,6 +14,7 @@ var ai_state = states.READY
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	screen_size = get_viewport_rect().size
 	GlobalSignals.died.connect(_on_player_death)
 	player = get_node("../Player")
 	weapon = weaponType.instantiate()
@@ -84,6 +86,7 @@ func move(delta: float) -> void:
 			elif player_location.length() > enemyStats["range"]:
 				ai_state = states.PREPARE
 				startPrepareTimer()
+	position = position.clamp(Vector2.ZERO, screen_size) # stop player from leaving screen.
 	
 func _on_invincible_delay_timeout() -> void:
 	invincible = false
