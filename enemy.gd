@@ -1,8 +1,10 @@
 extends Area2D
+class_name Enemy
 
 var invincible = false
 var player
-var weapon
+@export var weaponType : Enums.WeaponType
+var weapon : Weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
 var ai_state = states.READY
 @export var enemyStats = {"health": 2,"moveSpeed": 250,"range": 800,}
@@ -10,7 +12,7 @@ var ai_state = states.READY
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("../Player")
-	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.sword)
+	weapon = Weapon.create_enemy_weapon(weaponType)
 	enemyStats[range] = weapon.get_range() - 200
 	var modifier = StaticStats.enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]
