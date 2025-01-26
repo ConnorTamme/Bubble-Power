@@ -16,7 +16,6 @@ func _ready() -> void:
 	GlobalSignals.died.connect(_on_player_death)
 	player = get_node("../Player")
 	weapon = weaponType.instantiate()
-	enemyStats[range] = weapon.get_range() - 200
 	var modifier = StaticStats.regular_enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]
 	enemyStats["moveSpeed"] = enemyStats["moveSpeed"] + modifier[Enums.ENT_STATS.MOVE_SPEED]
@@ -54,11 +53,11 @@ func move(delta: float) -> void:
 	match ai_state:
 		states.READY:
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[range]/2:
+			if player_location.length() < enemyStats["range"]/2:
 				ai_state = states.RETREAT
 				if($maxRetreatTime.is_stopped()):
 					$maxRetreatTime.start()
-			elif player_location.length() > enemyStats[range]:
+			elif player_location.length() > enemyStats["range"]:
 				ai_state = states.APPROACH
 			else:
 				ai_state = states.PREPARE
@@ -70,7 +69,7 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[range]:
+			if player_location.length() < enemyStats["range"]:
 				ai_state = states.PREPARE
 				startPrepareTimer()
 		states.RETREAT:
@@ -80,9 +79,9 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() > enemyStats[range]:
+			if player_location.length() > enemyStats["range"]:
 				ai_state = states.APPROACH
-			elif player_location.length() > enemyStats[range]:
+			elif player_location.length() > enemyStats["range"]:
 				ai_state = states.PREPARE
 				startPrepareTimer()
 	

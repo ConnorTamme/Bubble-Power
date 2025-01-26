@@ -4,6 +4,7 @@ class_name Weapon
 
 
 var isPlayerWeapon: bool = false
+@export var projectile: PackedScene
 
 @export var stats = {
 	"Damage" : 10,
@@ -54,7 +55,8 @@ func attack(direction: Vector2) -> void:
 	
 	
 	for i in combinedStats[Enums.WEAPON_STATS.PELLET_COUNT]:
-		var projectile = Projectile.create_projectile(
+		var proj = projectile.instantiate()
+		proj.set_parameters(
 			direction.rotated(rng.randf_range(-1 + combinedStats[Enums.WEAPON_STATS.ACCURACY],
 		 1 - combinedStats[Enums.WEAPON_STATS.ACCURACY])),
 		 rng.randf_range(stats["Projectile Speed"]*0.66,
@@ -62,11 +64,10 @@ func attack(direction: Vector2) -> void:
 		 combinedStats[Enums.WEAPON_STATS.DAM],
 		 combinedStats[Enums.WEAPON_STATS.RANGE],
 		 isPlayerWeapon,
-		 stats["isMelee"]
 		)
-		projectile.set_name("bullet")
-		projectile.global_transform = global_transform
-		get_parent().get_parent().add_child(projectile)
+		proj.set_name("bullet")
+		proj.global_transform = global_transform
+		get_parent().get_parent().add_child(proj)
 		
 
 func _on_attack_delay_timeout() -> void:

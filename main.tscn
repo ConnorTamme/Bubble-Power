@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_xxjoi"]
 [ext_resource type="PackedScene" uid="uid://dm4mo8m4l580c" path="res://Boss.tscn" id="3_n2gl2"]
-[ext_resource type="PackedScene" path="res://DeathBanner.tscn" id="4_cbhwb"]
+[ext_resource type="PackedScene" uid="uid://cwl8wr0l0ypb6" path="res://DeathBanner.tscn" id="4_cbhwb"]
 [ext_resource type="PackedScene" uid="uid://cra3lusqpetg6" path="res://VictoryBanner.tscn" id="5_fcqle"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpeb3"]
