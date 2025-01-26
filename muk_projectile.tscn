@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cye2s06q2kig6"]
+
+[ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="1_hu08g"]
+[ext_resource type="Texture2D" uid="uid://cad2aejo0t8ex" path="res://flower.png" id="2_xbeu5"]
+
+[node name="RigidBody2D" instance=ExtResource("1_hu08g")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_xbeu5")
