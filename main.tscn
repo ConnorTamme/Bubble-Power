@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://jtbgpgtgcoy3"]
+[gd_scene load_steps=7 format=3 uid="uid://jtbgpgtgcoy3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5jfyn"]
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
 [ext_resource type="PackedScene" uid="uid://cwl8wr0l0ypb6" path="res://DeathBanner.tscn" id="4_cbhwb"]
+[ext_resource type="FontFile" uid="uid://5i6rqgrqo7yg" path="res://Jhon Cream.ttf" id="5_borlv"]
 [ext_resource type="PackedScene" uid="uid://cra3lusqpetg6" path="res://VictoryBanner.tscn" id="5_fcqle"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpeb3"]
@@ -33,9 +34,9 @@ wait_time = 3.0
 [node name="VictoryBanner" parent="EndTimer" instance=ExtResource("5_fcqle")]
 visible = false
 z_index = 1
-offset_left = 220.0
+offset_left = 190.0
 offset_top = 175.0
-offset_right = 605.0
+offset_right = 575.0
 offset_bottom = 275.0
 scale = Vector2(2, 2)
 
@@ -46,6 +47,24 @@ offset_top = 176.0
 offset_right = 570.0
 offset_bottom = 276.0
 scale = Vector2(2, 2)
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 997.0
+offset_top = 3.0
+offset_right = 1152.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("5_borlv")
+theme_override_font_sizes/font_size = 25
+text = "Level: "
+horizontal_alignment = 2
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]

@@ -19,6 +19,7 @@ var isWinner: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Score.text = str("Level: ", Singleton.level)
 	$MobTimer.start(spawn_rate)
 	GlobalSignals.died.connect(_on_player_death)
 	GlobalSignals.enemyKilled.connect(_on_enemy_death)
