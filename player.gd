@@ -63,6 +63,8 @@ func _ready():
 	crossHair = crossHairObj.instantiate();
 	add_child(crossHair)
 	
+	GlobalSignals.battleFinished.connect(battleDone)
+	
 	$AnimatedSprite2D.animation = idleAnimName
 	$AnimatedSprite2D.play()
 	
@@ -196,6 +198,11 @@ func die() -> void:
 	$AnimatedSprite2D.animation = "death"
 	$AnimatedSprite2D.play()
 
+func battleDone() -> void:
+	alive = false
+	if crossHair != null:
+		crossHair.queue_free()
+	self.set_collision_mask_value(3, false)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
