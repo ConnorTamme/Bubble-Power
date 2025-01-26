@@ -76,6 +76,8 @@ func _on_enemy_death() -> void:
 			return
 		#add_child(victory_banner.instantiate())
 		$EndTimer/VictoryBanner.visible = true
+		$WinSfx.play()
+		$WinSfx.set_pitch_scale(0.6)
 		isWinner = true
 		$EndTimer.start()
 		Singleton.level += 1
@@ -86,6 +88,8 @@ func _on_boss_death() -> void:
 	bossesKilled += 1
 	if bossesKilled == bossesToSpawn and killed == to_spawn:
 		$EndTimer.start()
+		$WinSfx.play()
+		$WinSfx.set_pitch_scale(0.6)
 		$EndTimer/VictoryBanner.visible = true
 		isWinner = true
 		Singleton.level += 1

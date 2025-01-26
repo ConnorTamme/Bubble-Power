@@ -116,6 +116,8 @@ func _on_invincible_delay_timeout() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
+	$hitSfx.set_volume_db(randf_range(-3,3))
+	$hitSfx.play()
 	body.collided()
 
 

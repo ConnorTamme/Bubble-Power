@@ -5,7 +5,6 @@ class_name Weapon
 
 var isPlayerWeapon: bool = false
 @export var projectile: PackedScene
-
 @export var stats = {
 	"Damage" : 10,
 	"Projectile Speed" : 400,
@@ -53,7 +52,9 @@ func attack(direction: Vector2) -> void:
 	if (stats["isMelee"]):
 		combinedStats["speed"] = 0
 	
-	
+	if (isPlayerWeapon):
+		$FireSound.set_volume_db(randf_range(-2,2))
+		$FireSound.play()
 	for i in combinedStats[Enums.WEAPON_STATS.PELLET_COUNT]:
 		var proj = projectile.instantiate()
 		proj.set_parameters(
