@@ -39,6 +39,7 @@ func takeDamage(damage: float) -> void:
 		die()
 		
 func die() -> void:
+	GlobalSignals.enemyKilled.emit()
 	queue_free()
 
 func debug_damage() -> void:

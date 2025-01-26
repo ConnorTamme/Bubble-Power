@@ -1,9 +1,11 @@
 extends Node
 
 var first_scene_index :  int = 0;
+var currIndex : int = 0
 var editor_scenes : Array[PackedScene] = [
+	#preload() titlescreen
 	 preload("res://main.tscn"),
-	preload("res://testing.tscn")
+	 preload("res://upgrade_ui.tscn")
 ]
 var loadable_scenes : Array[LoadableScene]
 var current_scene : LoadedScene
@@ -14,8 +16,13 @@ var time : float = 0;
 func _ready() -> void:
 	populate_loadable_scenes_list();
 	load_level_scene_by_index(first_scene_index);
+	GlobalSignals.nextScene.connect(_load_next_scene)
 
-	
+func _load_next_scene():
+	currIndex = (currIndex + 1) % loadable_scenes.size()
+	#if currIndex == 0:
+		#currIndex += 1
+	load_level_scene_by_index(currIndex)
 
 func load_level_scene_by_index(index : int) -> LoadedScene:
 	if(index < 0 || index > loadable_scenes.size()):

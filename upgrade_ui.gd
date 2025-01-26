@@ -163,4 +163,5 @@ func _on_select_and_continue_button_up() -> void:
 	else:
 		StaticStats.SetPlayerWeaponStatModifier(btnStat[$UpgradeCBtn])
 	
+	GlobalSignals.nextScene.emit()
 	pass # Replace with function body.

@@ -6,12 +6,12 @@
 script = ExtResource("1_uh34h")
 stats = {
 "Accuracy": 0.7,
-"Attack Speed": 4,
+"Attack Speed": 1,
 "Damage": 10,
-"Pellet Count": 1,
-"Projectile Speed": 0,
+"Pellet Count": 6,
+"Projectile Speed": 400,
 "Range": 400,
-"isMelee": true
+"isMelee": false
 }
 metadata/_edit_group_ = true
 

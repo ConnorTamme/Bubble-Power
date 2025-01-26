@@ -40,7 +40,7 @@ func setPlayerWeapon() -> void:
 func attack(direction: Vector2) -> void:
 	if !$attackDelay.is_stopped():
 		return
-	$attackDelay.start(stats["Projectile Speed"])
+	$attackDelay.start(stats["Attack Speed"])
 	direction = direction/direction.length()
 	var combinedStats = {
 		Enums.WEAPON_STATS.DAM : stats["Damage"] + modifier[Enums.WEAPON_STATS.DAM],
@@ -57,8 +57,8 @@ func attack(direction: Vector2) -> void:
 		var projectile = Projectile.create_projectile(
 			direction.rotated(rng.randf_range(-1 + combinedStats[Enums.WEAPON_STATS.ACCURACY],
 		 1 - combinedStats[Enums.WEAPON_STATS.ACCURACY])),
-		 rng.randf_range(combinedStats["speed"]*0.66,
-		combinedStats["speed"]),
+		 rng.randf_range(stats["Projectile Speed"]*0.66,
+		stats["Projectile Speed"]),
 		 combinedStats[Enums.WEAPON_STATS.DAM],
 		 combinedStats[Enums.WEAPON_STATS.RANGE],
 		 isPlayerWeapon,
