@@ -1,9 +1,9 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://d4anuxoy31i5m"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bov17heevdgcu"]
 
-[ext_resource type="Texture2D" uid="uid://blsw3i7k1ve3" path="res://button_clicked.png" id="1_m2ntg"]
-[ext_resource type="Texture2D" uid="uid://cao1veuile6t4" path="res://button_hover.png" id="2_neigc"]
-[ext_resource type="Texture2D" uid="uid://82p3jj6ytjc3" path="res://button_norm.png" id="3_rcswa"]
-[ext_resource type="FontFile" uid="uid://dawksoj6aosvj" path="res://Jhon Cream.ttf" id="4_42sl4"]
+[ext_resource type="Texture2D" uid="uid://dxysrd0rghd0k" path="res://button_clicked.png" id="1_m2ntg"]
+[ext_resource type="Texture2D" uid="uid://btp6jwpkc1wkh" path="res://button_hover.png" id="2_neigc"]
+[ext_resource type="Texture2D" uid="uid://ddhiab7eb3ya3" path="res://button_norm.png" id="3_rcswa"]
+[ext_resource type="FontFile" uid="uid://5i6rqgrqo7yg" path="res://Jhon Cream.ttf" id="4_42sl4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n43iv"]
 texture = ExtResource("1_m2ntg")

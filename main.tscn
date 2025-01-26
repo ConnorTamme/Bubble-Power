@@ -34,9 +34,9 @@ wait_time = 3.0
 [node name="VictoryBanner" parent="EndTimer" instance=ExtResource("5_fcqle")]
 visible = false
 z_index = 1
-offset_left = 220.0
+offset_left = 190.0
 offset_top = 175.0
-offset_right = 605.0
+offset_right = 575.0
 offset_bottom = 275.0
 scale = Vector2(2, 2)
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cra3lusqpetg6"]
 
 [ext_resource type="Texture2D" uid="uid://cad2aejo0t8ex" path="res://flower.png" id="1_l7a12"]
-[ext_resource type="FontFile" uid="uid://5i6rqgrqo7yg" path="res://Jhon Cream.ttf" id="2_sa7gu"]
+[ext_resource type="Texture2D" uid="uid://dtcg04xlknihl" path="res://Squeaky_Clean_text.png" id="2_e6axs"]
 [ext_resource type="Texture2D" uid="uid://boeb0absrbsh" path="res://single_bubble.png" id="3_re6df"]
 
 [node name="VictoryBanner" type="BoxContainer"]
@@ -18,16 +18,15 @@ position = Vector2(25, 50)
 scale = Vector2(4, 4)
 texture = ExtResource("1_l7a12")
 
-[node name="Label" type="Label" parent="."]
-custom_minimum_size = Vector2(250, 80)
+[node name="TextControl" type="Control" parent="."]
+custom_minimum_size = Vector2(270, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.319823, 0.527252, 1, 1)
-theme_override_fonts/font = ExtResource("2_sa7gu")
-theme_override_font_sizes/font_size = 40
-text = "Squeaky 
-Clean!"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="TextControl"]
+texture_filter = 1
+position = Vector2(135, 47)
+scale = Vector2(0.204, 0.321739)
+texture = ExtResource("2_e6axs")
 
 [node name="Control2" type="Control" parent="."]
 custom_minimum_size = Vector2(50, 50)
