@@ -45,6 +45,7 @@ func _on_player_death() -> void:
 	$MobTimer.stop()
 	player_died = true
 	add_child(death_banner.instantiate())
+	Singleton.level = 1
 	$EndTimer.start()
 
 func _on_enemy_death() -> void:
@@ -52,6 +53,7 @@ func _on_enemy_death() -> void:
 	if killed == to_spawn:
 		add_child(victory_banner.instantiate())
 		$EndTimer.start()
+		Singleton.level += 1
 		GlobalSignals.emit_signal("battleFinished")
 	
 
