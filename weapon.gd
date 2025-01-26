@@ -58,3 +58,6 @@ func attack(direction: Vector2) -> void:
 
 func _on_attack_delay_timeout() -> void:
 	canAttack = true
+
+func get_range() -> float:
+	return stats[Enums.WEAPON_STATS.RANGE] + modifier[Enums.WEAPON_STATS.RANGE]
