@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvetq7ixe7r7f"]
+[gd_scene load_steps=6 format=3 uid="uid://bvetq7ixe7r7f"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_e5mpq"]
 [ext_resource type="PackedScene" uid="uid://ccmarr0s1ecp8" path="res://LongRangeEnemyWeapon.tscn" id="2_x68tr"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4rwi"]
 radius = 59.0
 height = 118.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bnmg"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -33,6 +36,17 @@ one_shot = true
 
 [node name="maxRetreatTime" type="Timer" parent="."]
 one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_direction = 2
+offset_left = -22.0
+offset_top = -50.0
+offset_right = 22.0
+offset_bottom = -40.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4bnmg")
+step = 0.1
+value = 100.0
+show_percentage = false
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
