@@ -5,7 +5,7 @@ var player
 var weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
 var ai_state = states.READY
-@export var enemyStats = {"health": 2,"moveSpeed": 50,"range": 800,}
+@export var enemyStats = {"health": 2,"moveSpeed": 250,"range": 800,}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

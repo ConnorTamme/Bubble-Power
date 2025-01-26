@@ -135,12 +135,7 @@ func getAttackAngle():
 	crosshairPos.x += vecX
 	crosshairPos.y += vecY
 	
-	if(crossHair == null):
-		print("if you havent fixed it you havent fixed it - Christopher Duthcyn")
-		crossHair = crossHairObj.instantiate();
-		add_child(crossHair)
-	else:
-		crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
+	crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
 
 func _process(delta):
 	if DEBUG:
