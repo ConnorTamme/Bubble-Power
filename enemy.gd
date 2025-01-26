@@ -5,7 +5,7 @@ var player
 var weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
 var ai_state = states.READY
-@export var enemyStats = {"health": 2,"moveSpeed": 50,"range": 800,}
+@export var enemyStats = {"health": 2,"moveSpeed": 250,"range": 800,}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,12 +17,12 @@ func _ready() -> void:
 	enemyStats["moveSpeed"] = enemyStats["moveSpeed"] + modifier[Enums.ENT_STATS.MOVE_SPEED]
 	add_child(weapon)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move(delta)
 	if Input.is_action_pressed("p1_shoot"):
-		debug_damage()
+		pass
+		# debug_damage()a
 
 func takeDamage(damage: float) -> void:
 	if invincible:

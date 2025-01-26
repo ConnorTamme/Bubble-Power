@@ -6,6 +6,8 @@ var playerWins = [0,0,0,0]
 # Player Select needs to set this value when the game starts
 var playerCount = 2
 
+var numEnemyOnScreen = 0
+var level: int = 1
 
 func _winner():
 	print("We have a winner!")

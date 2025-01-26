@@ -41,7 +41,7 @@ var sneakKey =  "p1_sneak"
 # Crosshair variables
 @export var crosshairDist = 200
 @export var crossHairObj: PackedScene
-var crosshairPos = Vector2.ZERO
+var crosshairPos = Vector2(0 ,0)
 var crossHair
 
 # Shooting Variables
@@ -130,12 +130,11 @@ func getAttackAngle():
 	var vecX = (mouse.x - position.x)
 	var vecY = (mouse.y - position.y)
 	
-	crosshairPos = Vector2.ZERO
+	crosshairPos = Vector2(0, 0)
+	
 	crosshairPos.x += vecX
 	crosshairPos.y += vecY
 	
-	if(crossHair == null):
-		print("CrossHair is null!")
 	crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
 
 func _process(delta):

@@ -1,0 +1,39 @@
+diff --git a/WeaponManager.gd b/WeaponManager.gd
+index bf34c94..b2c5e8d 100644
+--- a/WeaponManager.gd
++++ b/WeaponManager.gd
+@@ -4,7 +4,7 @@ var statsTable = {
+ 	Enums.WeaponType.shotgun : {
+ 		Enums.WEAPON_STATS.DAM : 1,
+ 		Enums.WEAPON_STATS.SPEED : 400,
+-		Enums.WEAPON_STATS.RANGE : 1000,
++		Enums.WEAPON_STATS.RANGE : 400,
+ 		Enums.WEAPON_STATS.PELLET_COUNT : 6,
+ 		Enums.WEAPON_STATS.ACCURACY : 0.7,
+ 		Enums.WEAPON_STATS.ATTACK_SPEED : 5
+diff --git a/enemy.gd b/enemy.gd
+index 67bfb9f..64df68d 100644
+--- a/enemy.gd
++++ b/enemy.gd
+@@ -5,7 +5,7 @@ var player
+ var weapon
+ enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER}
+ var ai_state = states.READY
+-@export var enemyStats = {"health": 2,"moveSpeed": 50,"range": 800,}
++@export var enemyStats = {"health": 2,"moveSpeed": 250,"range": 800,}
+ 
+ # Called when the node enters the scene tree for the first time.
+ func _ready() -> void:
+diff --git a/projectile.gd b/projectile.gd
+index 923b3cb..16c4b65 100644
+--- a/projectile.gd
++++ b/projectile.gd
+@@ -29,6 +29,8 @@ func _process(delta: float) -> void:
+ 	global_position.x += direction.x * delta * speed
+ 	global_position.y += direction.y * delta * speed
+ 	var distance_from_start = Vector2(start_pos.x - position.x, start_pos.y - position.y)
++	if range == null:
++		return
+ 	if  distance_from_start.length() > range:
+ 		queue_free()
+ 

@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 	global_position.x += direction.x * delta * speed
 	global_position.y += direction.y * delta * speed
 	var distance_from_start = Vector2(start_pos.x - position.x, start_pos.y - position.y)
+	if range == null:
+		return
 	if  distance_from_start.length() > range:
 		queue_free()
 

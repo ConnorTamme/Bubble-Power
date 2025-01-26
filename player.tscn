@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://txylmowsjix5"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_62uao"]
-[ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="2_v24g0"]
+[ext_resource type="PackedScene" path="res://crosshair.tscn" id="2_wvje8"]
 [ext_resource type="Texture2D" uid="uid://b7g8cwsdc1vqw" path="res://bubbles.png" id="3_po64j"]
-[ext_resource type="Texture2D" uid="uid://dbhrsjave3biw" path="res://walk_right_player.png" id="5_ad1qb"]
-[ext_resource type="Texture2D" uid="uid://bsky611qhf3j2" path="res://walk_left_player.png" id="6_6yr57"]
+[ext_resource type="Texture2D" uid="uid://ctn8amm2q8v55" path="res://walk_right_player.png" id="5_ad1qb"]
+[ext_resource type="Texture2D" uid="uid://dgra47m6d6tid" path="res://walk_left_player.png" id="6_6yr57"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_se44r"]
 size = Vector2(43, 38)
@@ -129,7 +129,7 @@ disable_mode = 2
 motion_mode = 1
 platform_wall_layers = 1
 script = ExtResource("1_62uao")
-crossHairObj = ExtResource("2_v24g0")
+crossHairObj = ExtResource("2_wvje8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4.5, -3)
