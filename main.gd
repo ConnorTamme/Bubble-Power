@@ -3,9 +3,11 @@ extends Node2D
 #@onready var enemy = preload("res://enemy.tscn")
 @export var enemy: PackedScene
 @export var mob_scene: PackedScene
+@export var endDelay = 2
 var to_spawn = 10
 var killed = 0
 var spawned = 0
+var isWinner: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,9 +42,19 @@ func _on_mob_timer_timeout() -> void:
 
 func _on_player_death() -> void:
 	$MobTimer.stop()
+	isWinner = false
+	$EndTimer/DeathBanner.visible = true
+	$EndTimer.start(endDelay)
 
 func _on_enemy_death() -> void:
 	killed += 1
 	if killed == to_spawn:
+		isWinner = true
+		$EndTimer/VictoryBanner.visible = true
+		$EndTimer.start(endDelay)
+
+func _on_end_timer_timeout() -> void:
+	if(isWinner):
 		GlobalSignals.nextScene.emit()
-	
+	else:
+		get_tree().change_scene_to_file("res://start_screen.tscn")

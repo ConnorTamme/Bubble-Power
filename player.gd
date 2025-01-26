@@ -16,10 +16,10 @@ var health
 var alive = true
 
 @export var shieldRegenRate = 1
-@export var baseShield = 0
+@export var baseShield = 1
 var maxShield
 var shield
-
+var regenGo = true
 
 
 var screen_size
@@ -95,6 +95,10 @@ func checkHealth():
 		health = 0;
 	$HealthBar.value = health 
 
+func checkShield():
+	if(shield < 0):
+		shield = 0;
+	$ShieldBar.value = shield 
 
 
 func movePlayer(delta):
@@ -151,6 +155,8 @@ func _process(delta):
 		print("Player position: ", position)
 	
 	checkHealth()
+	checkShield()
+	RegenShield(delta)
 	movePlayer(delta)
 	getAttackAngle()
 	
@@ -160,7 +166,7 @@ func _process(delta):
 		pass
 
 func RegenShield(delta):
-	if($shieldTimer.is_stopped() && shield < maxShield):
+	if(regenGo && shield < maxShield):
 		shield += shieldRegenRate * delta
 		if(shield > maxShield): 
 			shield = maxShield
@@ -176,9 +182,11 @@ func _on_body_entered(body: Node2D) -> void:
 func takeDamage(damage: float) -> void:
 	var remainingDamage = damage
 	$shieldTimer.start()
+	regenGo = false
 	if(shield > 0):
 		if(shield < remainingDamage):
 			remainingDamage -= shield
+			shield = 0
 			health -= remainingDamage
 		else:
 			shield -= remainingDamage
@@ -188,15 +196,19 @@ func takeDamage(damage: float) -> void:
 		die()
 
 func die() -> void:
-	GlobalSignals.died.emit()
+	$AnimatedSprite2D.animation = "death"
+	
 	alive = false
 	$deathTimer.start()
 	if crossHair != null:
 		crossHair.queue_free()
 	if $HealthBar != null:
 		$HealthBar.queue_free()
-	$AnimatedSprite2D.animation = "death"
-	$AnimatedSprite2D.play()
+	if $ShieldBar != null:
+		$ShieldBar.queue_free()
+	GlobalSignals.died.emit()
+
+	
 
 func battleDone() -> void:
 	alive = false
@@ -211,3 +223,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_death_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_shield_timer_timeout() -> void:
+	regenGo = true

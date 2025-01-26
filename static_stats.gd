@@ -40,10 +40,10 @@ var enemy_weapon_modifiers = {
 	}
 
 var weapon_change = {
-	WEAPON_STATS.DAM : 5,
+	WEAPON_STATS.DAM : 3,
 	WEAPON_STATS.RANGE : 0.1,
 	WEAPON_STATS.PELLET_COUNT : 1,
-	WEAPON_STATS.ACCURACY : 5,
+	WEAPON_STATS.ACCURACY : 0.1,
 	WEAPON_STATS.ATTACK_SPEED : 0.1
 	}
 	#Entity Stats

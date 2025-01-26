@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jtbgpgtgcoy3"]
+[gd_scene load_steps=7 format=3 uid="uid://jtbgpgtgcoy3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5jfyn"]
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
-[ext_resource type="PackedScene" uid="uid://cuimrxqq14qde" path="res://enemy_1A.tscn" id="2_mpxcn"]
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_xxjoi"]
+[ext_resource type="PackedScene" uid="uid://cra3lusqpetg6" path="res://VictoryBanner.tscn" id="5_44vrk"]
+[ext_resource type="PackedScene" uid="uid://dh8ou8c0xevm4" path="res://DeathBanner.tscn" id="6_mp7xb"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpeb3"]
 _data = {
@@ -13,7 +14,7 @@ point_count = 5
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_5jfyn")
-enemy = ExtResource("2_mpxcn")
+enemy = ExtResource("2_xxjoi")
 mob_scene = ExtResource("2_xxjoi")
 
 [node name="Player" parent="." instance=ExtResource("1_foxcj")]
@@ -31,6 +32,22 @@ position = Vector2(8, 16)
 
 [node name="EndTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="VictoryBanner" parent="EndTimer" instance=ExtResource("5_44vrk")]
+visible = false
+offset_left = 220.0
+offset_top = 175.0
+offset_right = 605.0
+offset_bottom = 275.0
+scale = Vector2(2, 2)
+
+[node name="DeathBanner" parent="EndTimer" instance=ExtResource("6_mp7xb")]
+visible = false
+offset_left = 162.0
+offset_top = 176.0
+offset_right = 570.0
+offset_bottom = 276.0
+scale = Vector2(2, 2)
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]
