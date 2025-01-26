@@ -19,6 +19,7 @@ var isWinner: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Score.text = str("Level: ", Singleton.level)
 	$MobTimer.start(spawn_rate)
 	GlobalSignals.died.connect(_on_player_death)
 	GlobalSignals.enemyKilled.connect(_on_enemy_death)
@@ -35,7 +36,7 @@ func _on_mob_timer_timeout() -> void:
 	if spawned < to_spawn or spawned - killed > max_on_screen:
 		spawned += 1
 	# Create a new instance of the Mob scene.
-		var e = enemy.pick_random().instantiate()
+		var e = enemy.pick_random().indsstantiate()
 
 	# Choose a random location on Path2D.
 		var mob_spawn_location = $MobPath/MobSpawnLocation
