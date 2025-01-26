@@ -36,7 +36,7 @@ func _on_mob_timer_timeout() -> void:
 	if spawned < to_spawn or spawned - killed > max_on_screen:
 		spawned += 1
 	# Create a new instance of the Mob scene.
-		var e = enemy.pick_random().indsstantiate()
+		var e = enemy.pick_random().instantiate()
 
 	# Choose a random location on Path2D.
 		var mob_spawn_location = $MobPath/MobSpawnLocation
