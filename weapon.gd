@@ -11,10 +11,10 @@ var isPlayerWeapon: bool = false
 	"Range" : 400,
 	"Pellet Count" : 1,
 	"Accuracy" : 0.7,
-	"Attack Speed" : 1,
+	"Attack Speed" : 1000,
 	"isMelee" : false
 }
-var modifier = StaticStats.enemy_weapon_modifiers
+var modifier = StaticStats.regular_enemy_weapon_modifiers
 var canAttack = true
 var rng = RandomNumberGenerator.new()
 
@@ -44,10 +44,10 @@ func attack(direction: Vector2) -> void:
 	direction = direction/direction.length()
 	var combinedStats = {
 		Enums.WEAPON_STATS.DAM : stats["Damage"] + modifier[Enums.WEAPON_STATS.DAM],
-		Enums.WEAPON_STATS.RANGE : stats["Range"] + modifier[Enums.WEAPON_STATS.RANGE],
+		Enums.WEAPON_STATS.RANGE : min(1000, stats["Range"] + modifier[Enums.WEAPON_STATS.RANGE]),
 		Enums.WEAPON_STATS.PELLET_COUNT : stats["Pellet Count"] + modifier[Enums.WEAPON_STATS.PELLET_COUNT],
 		Enums.WEAPON_STATS.ACCURACY : min(1,stats["Accuracy"] + modifier[Enums.WEAPON_STATS.ACCURACY]),
-		Enums.WEAPON_STATS.ATTACK_SPEED : stats["Attack Speed"] + modifier[Enums.WEAPON_STATS.ATTACK_SPEED],
+		Enums.WEAPON_STATS.ATTACK_SPEED : max(0.1,(stats["Attack Speed"] - modifier[Enums.WEAPON_STATS.ATTACK_SPEED])/1000),
 		}
 	if (stats["isMelee"]):
 		combinedStats["speed"] = 0

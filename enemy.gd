@@ -17,7 +17,7 @@ func _ready() -> void:
 	player = get_node("../Player")
 	weapon = weaponType.instantiate()
 	enemyStats[range] = weapon.get_range() - 200
-	var modifier = StaticStats.enemy_modifiers
+	var modifier = StaticStats.regular_enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]
 	enemyStats["moveSpeed"] = enemyStats["moveSpeed"] + modifier[Enums.ENT_STATS.MOVE_SPEED]
 	add_child(weapon)

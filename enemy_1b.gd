@@ -12,6 +12,7 @@ func _process(delta):
 
 
 func _on_prepare_time_timeout() -> void:
+	super()
 	#$Flipper/Animator.animation = "attack"
 	$AttackTimer.start()
 

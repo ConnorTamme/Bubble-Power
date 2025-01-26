@@ -18,3 +18,4 @@ collision_layer = 0
 collision_mask = 0
 
 [node name="Boss" parent="." instance=ExtResource("3_6at16")]
+weaponType = null

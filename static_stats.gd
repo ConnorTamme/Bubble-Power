@@ -11,7 +11,13 @@ var player_modifiers = {
 	ENT_STATS.SHIELD : initValAdd,
 	}
 
-var enemy_modifiers = {
+var regular_enemy_modifiers = {
+	ENT_STATS.HEALTH : initValAdd,
+	ENT_STATS.MOVE_SPEED : initValAdd,
+	ENT_STATS.SHIELD : initValAdd,
+	}
+	
+var boss_enemy_modifiers = {
 	ENT_STATS.HEALTH : initValAdd,
 	ENT_STATS.MOVE_SPEED : initValAdd,
 	ENT_STATS.SHIELD : initValAdd,
@@ -31,14 +37,21 @@ var player_weapon_modifiers = {
 	WEAPON_STATS.ATTACK_SPEED : initValAdd
 	}
 	
-var enemy_weapon_modifiers = {
+var regular_enemy_weapon_modifiers = {
 	WEAPON_STATS.DAM : initValAdd,
 	WEAPON_STATS.RANGE : initValAdd,
 	WEAPON_STATS.PELLET_COUNT : initValAdd,
 	WEAPON_STATS.ACCURACY : initValAdd,
 	WEAPON_STATS.ATTACK_SPEED : initValAdd
 	}
-
+	
+var boss_enemy_weapon_modifiers = {
+	WEAPON_STATS.DAM : initValAdd,
+	WEAPON_STATS.RANGE : initValAdd,
+	WEAPON_STATS.PELLET_COUNT : initValAdd,
+	WEAPON_STATS.ACCURACY : initValAdd,
+	WEAPON_STATS.ATTACK_SPEED : initValAdd
+	}
 var weapon_change = {
 	WEAPON_STATS.DAM : 5,
 	WEAPON_STATS.RANGE : 0.1,
@@ -46,6 +59,35 @@ var weapon_change = {
 	WEAPON_STATS.ACCURACY : 5,
 	WEAPON_STATS.ATTACK_SPEED : 0.1
 	}
+
+var regular_enemy_change= {
+	ENT_STATS.HEALTH : 5,
+	ENT_STATS.MOVE_SPEED : 5,
+	ENT_STATS.SHIELD : 0
+}
+
+var boss_enemy_change = {
+	ENT_STATS.HEALTH : 10,
+	ENT_STATS.MOVE_SPEED : 5,
+	ENT_STATS.SHIELD : 0
+}
+
+var regular_enemy_weapon_change= {
+	WEAPON_STATS.DAM : 2,
+	WEAPON_STATS.RANGE : 0,
+	WEAPON_STATS.PELLET_COUNT : 0,
+	WEAPON_STATS.ACCURACY : 0,
+	WEAPON_STATS.ATTACK_SPEED : 1
+}
+
+var boss_enemy_weapon_change = {
+	WEAPON_STATS.DAM : 4,
+	WEAPON_STATS.RANGE : 0,
+	WEAPON_STATS.PELLET_COUNT : 0,
+	WEAPON_STATS.ACCURACY : 0,
+	WEAPON_STATS.ATTACK_SPEED : 0
+}
+
 	#Entity Stats
 func GetPlayerStatModifier(stat: ENT_STATS):
 	if(player_modifiers.has(stat)):
@@ -66,14 +108,14 @@ func SetPlayerStatModifier(stat: ENT_STATS):
 		print("didn't find that stat")
 		
 func GetEnemyStatModifier(stat: ENT_STATS):
-	if(enemy_modifiers.has(stat)):
-		return enemy_modifiers[stat]
+	if(regular_enemy_modifiers.has(stat)):
+		return regular_enemy_modifiers[stat]
 	else:
 		print("didn't find that stat")
 
 func SetEnemyStatModifier(stat: ENT_STATS, change):
-	if(enemy_modifiers.has(stat)):
-		enemy_modifiers[stat] = enemy_modifiers[stat] + change
+	if(regular_enemy_modifiers.has(stat)):
+		regular_enemy_modifiers[stat] = regular_enemy_modifiers[stat] + change
 	else:
 		print("didn't find that stat")
 
@@ -92,14 +134,14 @@ func SetPlayerWeaponStatModifier(stat: WEAPON_STATS):
 		print("didn't find that stat")	
 
 func GetEnemyWeaponStatModifier(stat: WEAPON_STATS):
-	if(enemy_weapon_modifiers.has(stat)):
-		return enemy_weapon_modifiers[stat]
+	if(regular_enemy_weapon_modifiers.has(stat)):
+		return regular_enemy_weapon_modifiers[stat]
 	else:
 		print("didn't find that stat")
 
 func SetEnemyWeaponStatModifier(stat: WEAPON_STATS, change):
-	if(enemy_weapon_modifiers.has(stat)):
-		enemy_weapon_modifiers[stat] = enemy_weapon_modifiers[stat] + change
+	if(regular_enemy_weapon_modifiers.has(stat)):
+		regular_enemy_weapon_modifiers[stat] = regular_enemy_weapon_modifiers[stat] + change
 	else:
 		print("didn't find that stat")	
 
@@ -114,12 +156,20 @@ func ResetPlayerWeaponStats():
 
 func ResetEnemyStats():
 	for stat in ENT_STATS:
-		enemy_modifiers[stat] = initValAdd
+		regular_enemy_modifiers[stat] = initValAdd
 
 func ResetEnemyWeaponStats():
 	for stat in WEAPON_STATS:
-		enemy_weapon_modifiers[stat] = initValAdd
-		
+		regular_enemy_weapon_modifiers[stat] = initValAdd
+
+func IncrementEnemyStats():
+	for i in ENT_STATS.size():
+		regular_enemy_modifiers[i] = regular_enemy_modifiers[i] + regular_enemy_change[i]
+		boss_enemy_modifiers[i] = boss_enemy_modifiers[i] + boss_enemy_change[i]
+	for i in WEAPON_STATS.size():
+		regular_enemy_weapon_modifiers[i] = regular_enemy_weapon_modifiers[i] + regular_enemy_weapon_change[i]
+		boss_enemy_weapon_modifiers[i] = boss_enemy_weapon_modifiers[i] + boss_enemy_weapon_change[i]
+
 func ResetAllStats():
 	ResetPlayerStats()
 	ResetEnemyStats()
