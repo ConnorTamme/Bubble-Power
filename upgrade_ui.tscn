@@ -1,9 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://m12iblo6r6v0"]
 
 [ext_resource type="Script" path="res://upgrade_ui.gd" id="1_04tsd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nktgf"]
-bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+[ext_resource type="Texture2D" uid="uid://cl8wsose1annj" path="res://hp_icon.png" id="2_yfmm4"]
+[ext_resource type="Texture2D" uid="uid://drbm0ar6f3vfl" path="res://moveSpeed_icon.webp" id="3_5v37e"]
+[ext_resource type="FontFile" uid="uid://qc2ww3yxu6qq" path="res://Jhon Cream.ttf" id="4_0l0yh"]
+[ext_resource type="Texture2D" uid="uid://pd0y0hfd4s5g" path="res://shield_icon.png" id="5_q74im"]
+[ext_resource type="Texture2D" uid="uid://dyyi6cq4rggjp" path="res://damage.png" id="6_26k04"]
+[ext_resource type="Texture2D" uid="uid://c6p6ediy1otc4" path="res://attackSpeed.png" id="7_1x6ev"]
+[ext_resource type="Texture2D" uid="uid://daol52hjws567" path="res://range.png" id="8_4guc5"]
+[ext_resource type="Texture2D" uid="uid://n3nte1bvcvgc" path="res://projectile_count.png" id="9_swbbh"]
+[ext_resource type="Texture2D" uid="uid://ywja64i1u6p8" path="res://accuracy.png" id="10_8oxfq"]
 
 [node name="Upgrade UI" type="Node2D"]
 script = ExtResource("1_04tsd")
@@ -13,6 +19,8 @@ offset_left = 50.0
 offset_top = 30.0
 offset_right = 500.0
 offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 30
 toggle_mode = true
 text = "UPGRADE A"
 
@@ -21,6 +29,8 @@ offset_left = 50.0
 offset_top = 170.0
 offset_right = 500.0
 offset_bottom = 295.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 30
 toggle_mode = true
 text = "UPGRADE B"
 
@@ -29,6 +39,8 @@ offset_left = 50.0
 offset_top = 310.0
 offset_right = 500.0
 offset_bottom = 435.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 30
 toggle_mode = true
 text = "UPGRADE C"
 
@@ -37,15 +49,201 @@ offset_left = 50.0
 offset_top = 465.0
 offset_right = 500.0
 offset_bottom = 615.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 40
 disabled = true
-text = "SELECT & CONTINUE"
+text = "CONTINUE"
 
-[node name="StatsText" type="RichTextLabel" parent="."]
+[node name="PlayerStatsContainer" type="GridContainer" parent="."]
 offset_left = 540.0
 offset_top = 30.0
-offset_right = 1130.0
-offset_bottom = 615.0
-theme_override_styles/background = SubResource("StyleBoxFlat_nktgf")
+offset_right = 1148.0
+offset_bottom = 295.0
+columns = 3
+
+[node name="Health" type="Container" parent="PlayerStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStatsContainer/Health"]
+position = Vector2(101, 115)
+texture = ExtResource("2_yfmm4")
+offset = Vector2(-14, -10)
+
+[node name="Text" type="Label" parent="PlayerStatsContainer/Health/Sprite2D"]
+offset_left = -103.0
+offset_top = 60.0
+offset_right = 97.0
+offset_bottom = 110.0
+pivot_offset = Vector2(947, 87)
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveSpeed" type="Container" parent="PlayerStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStatsContainer/MoveSpeed"]
+texture = ExtResource("3_5v37e")
+offset = Vector2(100, 115)
+
+[node name="Text" type="Label" parent="PlayerStatsContainer/MoveSpeed/Sprite2D"]
+custom_minimum_size = Vector2(200, 0)
+offset_top = 175.0
+offset_right = 200.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="Container" parent="PlayerStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerStatsContainer/Shield"]
+position = Vector2(100, 125)
+texture = ExtResource("5_q74im")
+
+[node name="Text" type="Label" parent="PlayerStatsContainer/Shield/Sprite2D"]
+offset_left = -105.0
+offset_top = 50.0
+offset_right = 95.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponStatsContainer" type="GridContainer" parent="."]
+layout_direction = 2
+offset_left = 540.0
+offset_top = 250.0
+offset_right = 1148.0
+offset_bottom = 620.0
+columns = 3
+
+[node name="Damage" type="Container" parent="WeaponStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponStatsContainer/Damage"]
+position = Vector2(101, 115)
+texture = ExtResource("6_26k04")
+offset = Vector2(5, 0)
+
+[node name="Text" type="Label" parent="WeaponStatsContainer/Damage/Sprite2D"]
+offset_left = -103.0
+offset_top = 60.0
+offset_right = 97.0
+offset_bottom = 110.0
+pivot_offset = Vector2(947, 87)
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackSpeed" type="Container" parent="WeaponStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponStatsContainer/AttackSpeed"]
+texture = ExtResource("7_1x6ev")
+offset = Vector2(75, 115)
+
+[node name="Text" type="Label" parent="WeaponStatsContainer/AttackSpeed/Sprite2D"]
+custom_minimum_size = Vector2(200, 0)
+offset_top = 175.0
+offset_right = 200.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Range" type="Container" parent="WeaponStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponStatsContainer/Range"]
+position = Vector2(100, 125)
+texture = ExtResource("8_4guc5")
+
+[node name="Text" type="Label" parent="WeaponStatsContainer/Range/Sprite2D"]
+offset_left = -105.0
+offset_top = 50.0
+offset_right = 95.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProjectileCount" type="Container" parent="WeaponStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponStatsContainer/ProjectileCount"]
+position = Vector2(200, 30)
+texture = ExtResource("9_swbbh")
+
+[node name="Text" type="Label" parent="WeaponStatsContainer/ProjectileCount/Sprite2D"]
+offset_left = -105.0
+offset_top = 50.0
+offset_right = 95.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Accuracy" type="Container" parent="WeaponStatsContainer"]
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponStatsContainer/Accuracy"]
+position = Vector2(205, 30)
+texture = ExtResource("10_8oxfq")
+
+[node name="Text" type="Label" parent="WeaponStatsContainer/Accuracy/Sprite2D"]
+offset_left = -100.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 35
+text = "0 -> 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerStatsLbl" type="Label" parent="."]
+offset_left = 572.0
+offset_top = 11.0
+offset_right = 1020.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 40
+text = "PLAYER STATS:"
+vertical_alignment = 2
+
+[node name="WeaponStatsLbl" type="Label" parent="."]
+offset_left = 572.0
+offset_top = 240.0
+offset_right = 1020.0
+offset_bottom = 310.0
+theme_override_fonts/font = ExtResource("4_0l0yh")
+theme_override_font_sizes/font_size = 40
+text = "WEAPON STATS:"
+vertical_alignment = 2
 
 [connection signal="toggled" from="UpgradeABtn" to="." method="_on_upgrade_a_btn_toggled"]
 [connection signal="toggled" from="UpgradeBBtn" to="." method="_on_upgrade_b_btn_toggled"]

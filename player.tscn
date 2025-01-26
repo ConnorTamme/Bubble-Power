@@ -207,5 +207,9 @@ shape = SubResource("CapsuleShape2D_gqjh4")
 wait_time = 2.0
 one_shot = true
 
+[node name="shieldTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]

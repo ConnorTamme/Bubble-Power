@@ -15,6 +15,7 @@ var maxHealth
 var health
 var alive = true
 
+@export var shieldRegenRate = 1
 @export var baseShield = 0
 var maxShield
 var shield
@@ -155,7 +156,12 @@ func _process(delta):
 		currWeapon.attack(crossHair.position)
 		pass
 
-
+func RegenShield(delta):
+	if($shieldTimer.is_stopped() && shield < maxShield):
+		shield += shieldRegenRate * delta
+		if(shield > maxShield): 
+			shield = maxShield
+	
 func _on_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
 	body.collided()
@@ -165,6 +171,15 @@ func _on_body_entered(body: Node2D) -> void:
 		# else, hurt health
 
 func takeDamage(damage: float) -> void:
+	var remainingDamage = damage
+	$shieldTimer.start()
+	if(shield > 0):
+		if(shield < remainingDamage):
+			remainingDamage -= shield
+			health -= remainingDamage
+		else:
+			shield -= remainingDamage
+		
 	health -= damage
 	if (health < 0):
 		die()

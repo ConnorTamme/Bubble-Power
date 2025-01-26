@@ -6,7 +6,7 @@
 script = ExtResource("1_uh34h")
 stats = {
 "Accuracy": 0.7,
-"Attack Speed": 2,
+"Attack Speed": 4,
 "Damage": 10,
 "Pellet Count": 1,
 "Projectile Speed": 0,

@@ -35,12 +35,14 @@ static func create_enemy_weapon(weaponType: Enums.WeaponType) -> Weapon:
 
 func attack(direction: Vector2) -> void:
 	if $attackDelay.is_stopped():
-		$attackDelay.start(stats["Projectile Speed"])
 		$concurrencyFix.start()
 		aim = direction
 		
 	
 func fire_gun() -> void:
+	if !$attackDelay.is_stopped():
+		return
+	$attackDelay.start(stats["Projectile Speed"])
 	var direction = aim/aim.length()
 	var combinedStats = {
 		Enums.WEAPON_STATS.DAM : stats["Damage"] + modifier[Enums.WEAPON_STATS.DAM],
