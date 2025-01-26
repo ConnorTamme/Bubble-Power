@@ -1,8 +1,10 @@
-listen up nerds this is what you do with git
+# Credits
+Anthony Blower - sleep deprived 
+Connor Tamme - can't handle spice
+Adhyan Patel - git wizard
+Siddharth    - beautiful art assets
+Amac - stunning music and score
 
-- fork this repo
-- make a branch for working on shit
-- open a PR against this repo's master and your feature branch
-- NO MORE THAN ONE BRANCH PER PERSON
-- frequently merge this repo's main into your main
-- `git pull remote main`
+
+# Discredits
+Aidan Warring (got us all sick, literally)
