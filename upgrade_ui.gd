@@ -21,7 +21,7 @@ var offenceUpgradeText = {
 var upgradeA = false;
 var upgradeB = false;
 var upgradeC = false;
-
+var btnStat = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,11 +70,13 @@ func CycleUpgrades():
 func GetDefenseUpgrade(btn: Button):
 	var i = randi() % StaticStats.ENT_STATS.size()
 	var defStat = StaticStats.ENT_STATS.keys()[i]
+	btnStat[btn] = StaticStats.ENT_STATS[defStat]
 	btn.text = defenceUpgradeText[StaticStats.ENT_STATS[defStat]]
 
 func GetOffenseUpgrade(btn: Button):
 	var i = randi() % StaticStats.WEAPON_STATS.size()
 	var offStat = StaticStats.WEAPON_STATS.keys()[i]
+	btnStat[btn] = StaticStats.WEAPON_STATS[offStat]
 	btn.text = offenceUpgradeText[StaticStats.WEAPON_STATS[offStat]]
 
 # Button Methods for toggling continue
@@ -112,5 +114,9 @@ func SetContinueBtnState():
 
 func _on_select_and_continue_button_up() -> void:
 	# Process Upgrades
+	if(upgradeA):
+		StaticStats.SetPlayerStatModifier(btnStat[$UpgradeABtn])
+	elif(upgradeB):
+		StaticStats.SetPlayerWeaponStatModifier(btnStat[$UpgradeBBtn])
 	
 	pass # Replace with function body.

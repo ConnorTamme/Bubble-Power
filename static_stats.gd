@@ -16,6 +16,12 @@ var enemy_modifiers = {
 	ENT_STATS.MOVE_SPEED : initValAdd,
 	ENT_STATS.SHIELD : initValAdd,
 	}
+	
+var stat_change = {
+	ENT_STATS.HEALTH : 5,
+	ENT_STATS.MOVE_SPEED : 5,
+	ENT_STATS.SHIELD : 3,
+	}
 
 var player_weapon_modifiers = {
 	WEAPON_STATS.DAM : initValAdd,
@@ -34,7 +40,15 @@ var enemy_weapon_modifiers = {
 	WEAPON_STATS.ACCURACY : initValAdd,
 	WEAPON_STATS.ATTACK_SPEED : initValAdd
 	}
-	
+
+var weapon_change = {
+	WEAPON_STATS.DAM : 5,
+	WEAPON_STATS.SPEED : 0.1,
+	WEAPON_STATS.RANGE : 0.1,
+	WEAPON_STATS.PELLET_COUNT : 1,
+	WEAPON_STATS.ACCURACY : 5,
+	WEAPON_STATS.ATTACK_SPEED : 0.1
+	}
 	#Entity Stats
 func GetPlayerStatModifier(stat: ENT_STATS):
 	if(player_modifiers.has(stat)):
@@ -42,9 +56,9 @@ func GetPlayerStatModifier(stat: ENT_STATS):
 	else:
 		print("didn't find that stat")
 
-func SetPlayerStatModifier(stat: ENT_STATS, change):
-	if(player_modifiers.has(stat)):
-		player_modifiers[stat] = player_modifiers[stat] + change
+func SetPlayerStatModifier(stat: ENT_STATS):
+	if(player_modifiers.has(stat) && stat_change.has(stat)):
+		player_modifiers[stat] = player_modifiers[stat] + stat_change[stat]
 	else:
 		print("didn't find that stat")
 		
@@ -68,9 +82,9 @@ func GetPlayerWeaponStatModifier(stat: WEAPON_STATS):
 	else:
 		print("didn't find that stat")
 
-func SetPlayerWeaponStatModifier(stat: WEAPON_STATS, change):
-	if(player_weapon_modifiers.has(stat)):
-		player_weapon_modifiers[stat] = player_weapon_modifiers[stat] + change
+func SetPlayerWeaponStatModifier(stat: WEAPON_STATS):
+	if(player_weapon_modifiers.has(stat) && weapon_change.has(stat)):
+		player_weapon_modifiers[stat] = player_weapon_modifiers[stat] + weapon_change[stat]
 	else:
 		print("didn't find that stat")	
 
