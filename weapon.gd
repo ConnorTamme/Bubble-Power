@@ -49,7 +49,9 @@ func attack(direction: Vector2) -> void:
 		 rng.randf_range(combinedStats[Enums.WEAPON_STATS.SPEED]*0.66,
 		combinedStats[Enums.WEAPON_STATS.SPEED]),
 		 combinedStats[Enums.WEAPON_STATS.DAM],
-		 combinedStats[Enums.WEAPON_STATS.RANGE])
+		 combinedStats[Enums.WEAPON_STATS.RANGE],
+		 isPlayerWeapon
+		)
 		projectile.set_name("bullet")
 		projectile.global_transform = global_transform
 		get_parent().get_parent().add_child(projectile)

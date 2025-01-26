@@ -9,13 +9,17 @@ var start_pos
 var range
 #Pretty sure we will need to set the mask in here too so it only targets players or enemies depending on who shot it
 
-static func create_projectile(direction: Vector2, speed: float, damage: float, range:float) -> Projectile:
+static func create_projectile(direction: Vector2, speed: float, damage: float, range:float, isPlayerProjectile: bool) -> Projectile:
 	var proj_scene: PackedScene = load("res://projectile.tscn")
 	var proj: Projectile = proj_scene.instantiate()
 	proj.direction = direction
 	proj.speed = speed
 	proj.damage = damage
 	proj.range = range
+	if isPlayerProjectile:
+		proj.set_collision_layer_value(4, true)
+	else:
+		proj.set_collision_layer_value(3, true)
 	return proj
 	
 
