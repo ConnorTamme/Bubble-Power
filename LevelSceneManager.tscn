@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw04f2x7pp6cl"]
 
 [ext_resource type="Script" path="res://level_scene_manager.gd" id="1_wv7s5"]
-[ext_resource type="PackedScene" path="res://level_bathroom.tscn" id="2_slra8"]
+[ext_resource type="PackedScene" uid="uid://srxgjkqo1vlc" path="res://level_bathroom.tscn" id="2_slra8"]
 [ext_resource type="PackedScene" uid="uid://m12iblo6r6v0" path="res://upgrade_ui.tscn" id="3_avuqf"]
 [ext_resource type="PackedScene" uid="uid://tdqb1ufd3dg0" path="res://level_sewer.tscn" id="4_1aunr"]
 
