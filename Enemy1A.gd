@@ -7,7 +7,8 @@ func _ready():
 
 func _process(delta):
 	super(delta)
-	$Flipper/Animator.flip_h = ((player.position.x - position.x) > 0)
+	if(player):
+		$Flipper/Animator.flip_h = ((player.position.x - position.x) > 0)
 	#scale.x = 1 if ((player.position.x - position.x) > 0) else -1
 
 
