@@ -142,8 +142,8 @@ func getAttackAngle():
 	var vecX
 	var vecY
 	if using_controller:
-		vecX = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
-		vecY = Input.get_joy_axis(0, JOY_AXIS_TRIGGER_LEFT)
+		vecX = Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+		vecY = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 	else:
 		vecY = (mouse.y - position.y)
 		vecX = (mouse.x - position.x)
