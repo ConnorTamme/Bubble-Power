@@ -34,13 +34,20 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("controller_y"):
-		$UpgradeABtn.pressed = !$UpgradeABtn.pressed
+		$UpgradeABtn.button_pressed = true
+		$UpgradeBBtn.button_pressed = false
+		$UpgradeCBtn.button_pressed = false
 	if Input.is_action_pressed("controller_x"):
-		$UpgradeBBtn.pressed = !$UpgradeBBtn.pressed
+		$UpgradeABtn.button_pressed = false
+		$UpgradeBBtn.button_pressed = true
+		$UpgradeCBtn.button_pressed = false
 	if Input.is_action_pressed("controller_b"):
-		$UpgradeCBtn.pressed = !$UpgradeCBtn.pressed
+		$UpgradeABtn.button_pressed = false
+		$UpgradeBBtn.button_pressed = false
+		$UpgradeCBtn.button_pressed = true
 	if Input.is_action_pressed("controller_a"):
-		$SelectAndContinue._on_select_and_continue_button_up()
+		if $UpgradeABtn.button_pressed or $UpgradeBBtn.button_pressed or $UpgradeCBtn.button_pressed:
+			_on_select_and_continue_button_up()
 
 func CycleUpgrades():
 	# one should be defensive, one offensive
