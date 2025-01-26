@@ -3,7 +3,8 @@ extends Sprite2D
 class_name Weapon
 
 
-var isPlayerWeapon: bool
+var isPlayerWeapon: bool = false
+
 @export var stats = {
 	"Damage" : 10,
 	"Projectile Speed" : 400,
@@ -13,10 +14,9 @@ var isPlayerWeapon: bool
 	"Attack Speed" : 1,
 	"isMelee" : false
 }
-var modifier
+var modifier = StaticStats.enemy_weapon_modifiers
 var canAttack = true
 var rng = RandomNumberGenerator.new()
-var aim: Vector2
 
 static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
@@ -33,17 +33,15 @@ static func create_enemy_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	weapon.modifier = StaticStats.enemy_weapon_modifiers
 	return weapon
 
+func setPlayerWeapon() -> void:
+	isPlayerWeapon = true
+	modifier = StaticStats.player_weapon_modifiers
+
 func attack(direction: Vector2) -> void:
-	if $attackDelay.is_stopped():
-		$concurrencyFix.start()
-		aim = direction
-		
-	
-func fire_gun() -> void:
 	if !$attackDelay.is_stopped():
 		return
 	$attackDelay.start(stats["Projectile Speed"])
-	var direction = aim/aim.length()
+	direction = direction/direction.length()
 	var combinedStats = {
 		Enums.WEAPON_STATS.DAM : stats["Damage"] + modifier[Enums.WEAPON_STATS.DAM],
 		Enums.WEAPON_STATS.RANGE : stats["Range"] + modifier[Enums.WEAPON_STATS.RANGE],
@@ -69,6 +67,7 @@ func fire_gun() -> void:
 		projectile.set_name("bullet")
 		projectile.global_transform = global_transform
 		get_parent().get_parent().add_child(projectile)
+		
 
 func _on_attack_delay_timeout() -> void:
 	canAttack = true

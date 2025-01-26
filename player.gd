@@ -49,14 +49,15 @@ var crossHair
 
 # Shooting Variables
 var distFromPlayer = 30
-@export var weaponType: Enums.WeaponType
+@export var weaponType: PackedScene
 var currWeapon: Weapon
 #@export var defaultWeapon: Weapon
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	currWeapon = Weapon.create_player_weapon(weaponType)
+	currWeapon = weaponType.instantiate()
+	currWeapon.setPlayerWeapon()
 	add_child(currWeapon)
 	# Make crosshair
 	crossHair = crossHairObj.instantiate();

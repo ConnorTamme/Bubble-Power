@@ -3,7 +3,7 @@ class_name Enemy
 
 var invincible = false
 var player
-@export var weaponType : Enums.WeaponType
+@export var weaponType : PackedScene
 
 var playerAlive: bool = true
 var weapon : Weapon
@@ -15,7 +15,7 @@ var ai_state = states.READY
 func _ready() -> void:
 	GlobalSignals.died.connect(_on_player_death)
 	player = get_node("../Player")
-	weapon = Weapon.create_enemy_weapon(weaponType)
+	weapon = weaponType.instantiate()
 	enemyStats[range] = weapon.get_range() - 200
 	var modifier = StaticStats.enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]
