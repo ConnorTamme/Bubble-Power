@@ -3,7 +3,11 @@
 [ext_resource type="Script" path="res://main.gd" id="1_5jfyn"]
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
 [ext_resource type="PackedScene" uid="uid://cwl8wr0l0ypb6" path="res://DeathBanner.tscn" id="4_cbhwb"]
+<<<<<<< Updated upstream
 [ext_resource type="FontFile" uid="uid://dawksoj6aosvj" path="res://Jhon Cream.ttf" id="5_borlv"]
+=======
+[ext_resource type="FontFile" uid="uid://yu02vrfvm65d" path="res://Jhon Cream.ttf" id="5_borlv"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://cra3lusqpetg6" path="res://VictoryBanner.tscn" id="5_fcqle"]
 [ext_resource type="AudioStream" uid="uid://cmgbdrdn0hw0p" path="res://zapsplat_cartoon_bubble_pop_sequence_fast_pops_ascending_004_77422.mp3" id="6_pliga"]
 

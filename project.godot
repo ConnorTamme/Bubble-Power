@@ -24,6 +24,11 @@ StaticStats="*res://static_stats.gd"
 GlobalSignals="*res://Signal.gd"
 GlobalAudioStreamPlayer="*res://audio_stream_player.tscn"
 
+[display]
+
+window/size/resizable=false
+window/stretch/mode="viewport"
+
 [input]
 
 p1_up={
