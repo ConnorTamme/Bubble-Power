@@ -2,7 +2,7 @@ extends Node
 
 var first_scene_index :  int = 0;
 var currIndex : int = 0
-var editor_scenes : Array[PackedScene] = [
+@export var editor_scenes : Array[PackedScene] = [
 	#preload() titlescreen
 	 preload("res://main.tscn"),
 	 preload("res://upgrade_ui.tscn")

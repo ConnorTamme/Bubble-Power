@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tdqb1ufd3dg0"]
+
+[ext_resource type="PackedScene" uid="uid://jtbgpgtgcoy3" path="res://main.tscn" id="1_oc5gi"]
+[ext_resource type="Texture2D" uid="uid://jrd4c5svtvae" path="res://s1.png" id="2_a1575"]
+
+[node name="level_sewer" instance=ExtResource("1_oc5gi")]
+
+[node name="Background" type="Sprite2D" parent="." index="3"]
+z_index = -1
+position = Vector2(0, 161.75)
+scale = Vector2(3.85333, 2.14333)
+texture = ExtResource("2_a1575")
+centered = false
+offset = Vector2(0, -75)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://jtbgpgtgcoy3"]
+[gd_scene load_steps=6 format=3 uid="uid://jtbgpgtgcoy3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5jfyn"]
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
+[ext_resource type="PackedScene" uid="uid://cuimrxqq14qde" path="res://enemy_1A.tscn" id="2_mpxcn"]
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_xxjoi"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpeb3"]
@@ -12,9 +13,8 @@ point_count = 5
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_5jfyn")
+enemy = ExtResource("2_mpxcn")
 mob_scene = ExtResource("2_xxjoi")
-victory_banner = ExtResource("1_foxcj")
-death_banner = ExtResource("2_xxjoi")
 
 [node name="Player" parent="." instance=ExtResource("1_foxcj")]
 position = Vector2(173, 334)
