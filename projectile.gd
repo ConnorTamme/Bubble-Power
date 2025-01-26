@@ -58,7 +58,9 @@ func _process(delta: float) -> void:
 	if  distance_from_start.length() > range:
 		queue_free()
 
-
+func collided() -> void:
+	if !isMelee:
+		queue_free()
 	
 
 

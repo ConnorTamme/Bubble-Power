@@ -81,7 +81,7 @@ func _on_invincible_delay_timeout() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
-	body.queue_free()
+	body.collided()
 
 
 func _on_recover_time_timeout() -> void:
