@@ -10,7 +10,7 @@ var ai_state = states.READY
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_node("../Player")
-	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.shotgun)
+	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.sword)
 	enemyStats[range] = weapon.get_range() - 200
 	var modifier = StaticStats.enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]

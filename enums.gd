@@ -1,6 +1,6 @@
 extends Node
 
-enum WeaponType {shotgun}
+enum WeaponType {shotgun, sword}
 
 enum ENEMY_TYPE {SLOW, MEDIUM, FAST}
 enum WEAPON_STATS {DAM, SPEED, RANGE, PELLET_COUNT, ACCURACY, ATTACK_SPEED}

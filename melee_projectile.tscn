@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://duqpmb1xmj841"]
+
+[ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="1_b7i6y"]
+
+[node name="RigidBody2D" instance=ExtResource("1_b7i6y")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+scale = Vector2(10, 10)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(10, 10)
+
+[node name="LifeTime" type="Timer" parent="." index="2"]
+autostart = true
+
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

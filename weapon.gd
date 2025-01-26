@@ -3,7 +3,7 @@ extends Sprite2D
 class_name Weapon
 
 var isPlayerWeapon: bool
-var stats
+@export var stats = {}
 var modifier
 var canAttack = true
 var rng = RandomNumberGenerator.new()
@@ -39,7 +39,8 @@ func attack(direction: Vector2) -> void:
 		Enums.WEAPON_STATS.ACCURACY : min(1,stats[Enums.WEAPON_STATS.ACCURACY] + modifier[Enums.WEAPON_STATS.ACCURACY]),
 		Enums.WEAPON_STATS.ATTACK_SPEED : stats[Enums.WEAPON_STATS.ATTACK_SPEED] + modifier[Enums.WEAPON_STATS.ATTACK_SPEED],
 		}
-		
+	if (stats["isMelee"]):
+		combinedStats[Enums.WEAPON_STATS.SPEED] = 0
 	$attackDelay.start(combinedStats[Enums.WEAPON_STATS.ATTACK_SPEED])
 	
 	for i in combinedStats[Enums.WEAPON_STATS.PELLET_COUNT]:
@@ -50,7 +51,8 @@ func attack(direction: Vector2) -> void:
 		combinedStats[Enums.WEAPON_STATS.SPEED]),
 		 combinedStats[Enums.WEAPON_STATS.DAM],
 		 combinedStats[Enums.WEAPON_STATS.RANGE],
-		 isPlayerWeapon
+		 isPlayerWeapon,
+		 stats["isMelee"]
 		)
 		projectile.set_name("bullet")
 		projectile.global_transform = global_transform
