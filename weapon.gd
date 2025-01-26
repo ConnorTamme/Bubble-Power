@@ -33,7 +33,7 @@ func attack(direction: Vector2) -> void:
 	direction = direction/direction.length()
 	var combinedStats = {
 		Enums.WEAPON_STATS.DAM : stats[Enums.WEAPON_STATS.DAM] + modifier[Enums.WEAPON_STATS.DAM],
-		Enums.WEAPON_STATS.SPEED : stats[Enums.WEAPON_STATS.SPEED] + modifier[Enums.WEAPON_STATS.SPEED],
+		#Enums.WEAPON_STATS.SPEED : stats[Enums.WEAPON_STATS.SPEED] + modifier[Enums.WEAPON_STATS.SPEED],
 		Enums.WEAPON_STATS.RANGE : stats[Enums.WEAPON_STATS.RANGE] + modifier[Enums.WEAPON_STATS.RANGE],
 		Enums.WEAPON_STATS.PELLET_COUNT : stats[Enums.WEAPON_STATS.PELLET_COUNT] + modifier[Enums.WEAPON_STATS.PELLET_COUNT],
 		Enums.WEAPON_STATS.ACCURACY : min(1,stats[Enums.WEAPON_STATS.ACCURACY] + modifier[Enums.WEAPON_STATS.ACCURACY]),
@@ -47,8 +47,8 @@ func attack(direction: Vector2) -> void:
 		var projectile = Projectile.create_projectile(
 			direction.rotated(rng.randf_range(-1 + combinedStats[Enums.WEAPON_STATS.ACCURACY],
 		 1 - combinedStats[Enums.WEAPON_STATS.ACCURACY])),
-		 rng.randf_range(combinedStats[Enums.WEAPON_STATS.SPEED]*0.66,
-		combinedStats[Enums.WEAPON_STATS.SPEED]),
+		 rng.randf_range(400, # combinedStats[Enums.WEAPON_STATS.SPEED]*0.66,
+		 400),
 		 combinedStats[Enums.WEAPON_STATS.DAM],
 		 combinedStats[Enums.WEAPON_STATS.RANGE],
 		 isPlayerWeapon,
