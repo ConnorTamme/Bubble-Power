@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwl8wr0l0ypb6"]
+
+[ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://icon.svg" id="1_6k1cm"]
+[ext_resource type="FontFile" uid="uid://dawksoj6aosvj" path="res://Jhon Cream.ttf" id="2_murel"]
+
+[node name="VictoryBanner" type="BoxContainer"]
+offset_right = 400.0
+offset_bottom = 100.0
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(25, 50)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6k1cm")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.319823, 0.527252, 1, 1)
+theme_override_fonts/font = ExtResource("2_murel")
+theme_override_font_sizes/font_size = 40
+text = "GAme Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control2"]
+texture_filter = 1
+position = Vector2(25, 50)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6k1cm")
+flip_h = true

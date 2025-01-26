@@ -3,8 +3,9 @@ class_name Enemy
 
 var invincible = false
 var player
-@export var weaponType : Enums.WeaponType
+@export var weaponType : PackedScene
 
+var screen_size
 var playerAlive: bool = true
 var weapon : Weapon
 enum states {READY, APPROACH, RETREAT, PREPARE, RECOVER, PLAYER_DEAD}
@@ -13,11 +14,11 @@ var ai_state = states.READY
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	screen_size = get_viewport_rect().size
 	GlobalSignals.died.connect(_on_player_death)
 	player = get_node("../Player")
-	weapon = Weapon.create_enemy_weapon(weaponType)
-	enemyStats[range] = weapon.get_range() - 200
-	var modifier = StaticStats.enemy_modifiers
+	weapon = weaponType.instantiate()
+	var modifier = StaticStats.regular_enemy_modifiers
 	enemyStats["heath"] = enemyStats["health"] + modifier[Enums.ENT_STATS.HEALTH]
 	enemyStats["moveSpeed"] = enemyStats["moveSpeed"] + modifier[Enums.ENT_STATS.MOVE_SPEED]
 	add_child(weapon)
@@ -39,6 +40,7 @@ func takeDamage(damage: float) -> void:
 		die()
 		
 func die() -> void:
+	GlobalSignals.enemyKilled.emit()
 	queue_free()
 
 func debug_damage() -> void:
@@ -53,11 +55,11 @@ func move(delta: float) -> void:
 	match ai_state:
 		states.READY:
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[range]/2:
+			if player_location.length() < enemyStats["range"]/2:
 				ai_state = states.RETREAT
 				if($maxRetreatTime.is_stopped()):
 					$maxRetreatTime.start()
-			elif player_location.length() > enemyStats[range]:
+			elif player_location.length() > enemyStats["range"]:
 				ai_state = states.APPROACH
 			else:
 				ai_state = states.PREPARE
@@ -69,7 +71,7 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() < enemyStats[range]:
+			if player_location.length() < enemyStats["range"]:
 				ai_state = states.PREPARE
 				startPrepareTimer()
 		states.RETREAT:
@@ -79,11 +81,12 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
-			if player_location.length() > enemyStats[range]:
+			if player_location.length() > enemyStats["range"]:
 				ai_state = states.APPROACH
-			elif player_location.length() > enemyStats[range]:
+			elif player_location.length() > enemyStats["range"]:
 				ai_state = states.PREPARE
 				startPrepareTimer()
+	position = position.clamp(Vector2.ZERO, screen_size) # stop player from leaving screen.
 	
 func _on_invincible_delay_timeout() -> void:
 	invincible = false

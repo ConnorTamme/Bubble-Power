@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://buiatnvn1ea3x" path="res://icon.svg" id="1_6pilx"]
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_a55p0"]
-[ext_resource type="PackedScene" path="res://Boss.tscn" id="3_6at16"]
+[ext_resource type="PackedScene" uid="uid://dm4mo8m4l580c" path="res://Boss.tscn" id="3_6at16"]
 
 [node name="Testing" type="Node2D"]
 

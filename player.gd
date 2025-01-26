@@ -15,10 +15,11 @@ var maxHealth
 var health
 var alive = true
 
-@export var baseShield = 0
+@export var shieldRegenRate = 1
+@export var baseShield = 1
 var maxShield
 var shield
-
+var regenGo = true
 
 
 var screen_size
@@ -48,18 +49,21 @@ var crossHair
 
 # Shooting Variables
 var distFromPlayer = 30
-@export var weaponType: Enums.WeaponType
+@export var weaponType: PackedScene
 var currWeapon: Weapon
 #@export var defaultWeapon: Weapon
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	currWeapon = Weapon.create_player_weapon(weaponType)
+	currWeapon = weaponType.instantiate()
+	currWeapon.setPlayerWeapon()
 	add_child(currWeapon)
 	# Make crosshair
 	crossHair = crossHairObj.instantiate();
 	add_child(crossHair)
+	
+	GlobalSignals.battleFinished.connect(battleDone)
 	
 	$AnimatedSprite2D.animation = idleAnimName
 	$AnimatedSprite2D.play()
@@ -91,6 +95,10 @@ func checkHealth():
 		health = 0;
 	$HealthBar.value = health 
 
+func checkShield():
+	if(shield < 0):
+		shield = 0;
+	$ShieldBar.value = shield 
 
 
 func movePlayer(delta):
@@ -147,6 +155,8 @@ func _process(delta):
 		print("Player position: ", position)
 	
 	checkHealth()
+	checkShield()
+	RegenShield(delta)
 	movePlayer(delta)
 	getAttackAngle()
 	
@@ -155,7 +165,12 @@ func _process(delta):
 		currWeapon.attack(crossHair.position)
 		pass
 
-
+func RegenShield(delta):
+	if(regenGo && shield < maxShield):
+		shield += shieldRegenRate * delta
+		if(shield > maxShield): 
+			shield = maxShield
+	
 func _on_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
 	body.collided()
@@ -165,15 +180,41 @@ func _on_body_entered(body: Node2D) -> void:
 		# else, hurt health
 
 func takeDamage(damage: float) -> void:
+	var remainingDamage = damage
+	$shieldTimer.start()
+	regenGo = false
+	if(shield > 0):
+		if(shield < remainingDamage):
+			remainingDamage -= shield
+			shield = 0
+			health -= remainingDamage
+		else:
+			shield -= remainingDamage
+		
 	health -= damage
 	if (health < 0):
 		die()
 
 func die() -> void:
-	GlobalSignals.died.emit()
+	$AnimatedSprite2D.animation = "death"
+	
 	alive = false
 	$deathTimer.start()
+	if crossHair != null:
+		crossHair.queue_free()
+	if $HealthBar != null:
+		$HealthBar.queue_free()
+	if $ShieldBar != null:
+		$ShieldBar.queue_free()
+	GlobalSignals.died.emit()
 
+	
+
+func battleDone() -> void:
+	alive = false
+	if crossHair != null:
+		crossHair.queue_free()
+	self.set_collision_mask_value(3, false)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	takeDamage(body.damage)
@@ -182,3 +223,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_death_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_shield_timer_timeout() -> void:
+	regenGo = true
