@@ -18,12 +18,12 @@ func _ready() -> void:
 	weapon = Weapon.create_enemy_weapon(Enums.WeaponType.shotgun)
 	add_child(weapon)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move(delta)
 	if Input.is_action_pressed("p1_shoot"):
-		debug_damage()
+		pass
+		# debug_damage()a
 
 func takeDamage(damage: float) -> void:
 	if invincible:
