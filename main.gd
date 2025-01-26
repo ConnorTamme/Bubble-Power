@@ -20,8 +20,6 @@ func _on_timer_timeout() -> void:
 	DisplayServer.window_get_size()
 	var sz = get_viewport().get_visible_rect().size
 	
-	print("creating an enemy")
-	
 	var x_pos = (randi() % int(sz.x))
 	var y_pos = (randi() % int(sz.y))
 	var e = enemy.instantiate()
