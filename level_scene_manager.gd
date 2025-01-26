@@ -1,6 +1,6 @@
 extends Node
 
-@export var first_scene_index :  int = 0;
+var first_scene_index :  int = 0;
 var editor_scenes : Array[PackedScene] = [
 	 preload("res://main.tscn"),
 	preload("res://testing.tscn")
