@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cno2lm1fv2bf5"]
+[gd_scene load_steps=3 format=3 uid="uid://doqad7p5nw3nn"]
 
 [ext_resource type="PackedScene" uid="uid://smefu35yi3ph" path="res://weapon.tscn" id="1_6ikxp"]
+[ext_resource type="PackedScene" path="res://muk_projectile.tscn" id="2_85i7h"]
 
 [node name="weapon" instance=ExtResource("1_6ikxp")]
+projectile = ExtResource("2_85i7h")
 stats = {
 "Accuracy": -3.14,
 "Attack Speed": 3,
 "Damage": 2,
 "Pellet Count": 30,
 "Projectile Speed": 150,
-"Range": 300,
+"Range": 200,
 "isMelee": false
 }

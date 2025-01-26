@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://co388chs4ejow"]
+
+[ext_resource type="PackedScene" uid="uid://cwvedr0w82n7i" path="res://projectile.tscn" id="1_hrsr4"]
+[ext_resource type="Texture2D" uid="uid://cvqmjqs5wkhs2" path="res://evil_bubble.png" id="2_eo272"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ombfb"]
+atlas = ExtResource("2_eo272")
+region = Rect2(64.0318, 71.5335, 22.7823, 22.2239)
+
+[node name="RigidBody2D" instance=ExtResource("1_hrsr4")]
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_ombfb")

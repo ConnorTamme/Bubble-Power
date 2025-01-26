@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_bsuup"]
 [ext_resource type="Script" path="res://Boss.gd" id="2_jlifq"]
-[ext_resource type="PackedScene" path="res://NovaWeapon.tscn" id="3_15uct"]
+[ext_resource type="PackedScene" uid="uid://doqad7p5nw3nn" path="res://NovaWeapon.tscn" id="3_15uct"]
 [ext_resource type="Texture2D" uid="uid://8wjqgsv6o5ft" path="res://muk_attack.png" id="3_mi8oa"]
 [ext_resource type="Texture2D" uid="uid://croc6ppim4vr1" path="res://muk_idle.png" id="3_vm340"]
 [ext_resource type="Texture2D" uid="uid://3nhhkmqb2g7n" path="res://boss_recover.png" id="5_8dq8v"]
@@ -188,6 +188,13 @@ animations = [{
 [node name="Boss" instance=ExtResource("2_bsuup")]
 script = ExtResource("2_jlifq")
 weaponType = ExtResource("3_15uct")
+enemyStats = {
+"health": 20,
+"moveSpeed": 150,
+"prepareTime": 1,
+"range": 100,
+"recoveryTime": 2
+}
 
 [node name="Sprite2D" parent="." index="0"]
 visible = false

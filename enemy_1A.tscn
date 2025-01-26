@@ -56,6 +56,13 @@ animations = [{
 [node name="Enemy1A" instance=ExtResource("1_52vvt")]
 script = ExtResource("2_pl6db")
 weaponType = ExtResource("3_1cdkg")
+enemyStats = {
+"health": 2,
+"moveSpeed": 250,
+"prepareTime": 1,
+"range": 150,
+"recoveryTime": 2
+}
 
 [node name="Sprite2D" parent="." index="0"]
 visible = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwvedr0w82n7i"]
 
 [ext_resource type="Script" path="res://projectile.gd" id="1_ntjti"]
-[ext_resource type="Texture2D" uid="uid://cad2aejo0t8ex" path="res://flower.png" id="2_kgbqf"]
+[ext_resource type="Texture2D" uid="uid://jshj76y5fa1f" path="res://single_bubble.png" id="2_6lvr5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxvp3"]
 radius = 5.0
@@ -23,6 +23,7 @@ shape = SubResource("CapsuleShape2D_dxvp3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_kgbqf")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6lvr5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
