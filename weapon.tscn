@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://smefu35yi3ph"]
+[gd_scene load_steps=3 format=3 uid="uid://smefu35yi3ph"]
 
 [ext_resource type="Script" path="res://weapon.gd" id="1_uh34h"]
+[ext_resource type="AudioStream" uid="uid://dgp3rffrujfd6" path="res://bubble-gunshot.wav" id="2_ddiyx"]
 
 [node name="weapon" type="Sprite2D"]
 script = ExtResource("1_uh34h")
@@ -17,5 +18,8 @@ metadata/_edit_group_ = true
 
 [node name="attackDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ddiyx")
 
 [connection signal="timeout" from="attackDelay" to="." method="_on_attack_delay_timeout"]

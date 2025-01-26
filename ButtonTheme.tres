@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bn5j4nappd43l" path="res://button_norm.png" id="3_rcswa"]
 [ext_resource type="FontFile" uid="uid://ccbgp2yit3pkj" path="res://Jhon Cream.ttf" id="4_42sl4"]
 
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n43iv"]
 texture = ExtResource("1_m2ntg")
 region_rect = Rect2(8.67781, 41.9426, 279.339, 65.2893)
