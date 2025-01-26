@@ -1,14 +1,11 @@
 extends Node2D
 
-@onready var enemy = preload("res://enemy.tscn")
+#@onready var enemy = preload("res://enemy.tscn")
+@export var enemy: PackedScene
 @export var mob_scene: PackedScene
-
-@export var victory_banner: PackedScene
-@export var death_banner: PackedScene
 var to_spawn = 10
 var killed = 0
 var spawned = 0
-var player_died = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +22,7 @@ func _process(delta: float) -> void:
 
 func _on_mob_timer_timeout() -> void:
 	if spawned < to_spawn:
-		spawned += 1
+		
 	# Create a new instance of the Mob scene.
 		var e = enemy.instantiate()
 
@@ -63,3 +60,4 @@ func _on_end_timer_timeout() -> void:
 		get_tree().change_scene_to_file("res://start_screen.tscn")
 	else:
 		GlobalSignals.nextScene.emit()
+	
