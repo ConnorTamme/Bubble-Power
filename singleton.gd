@@ -9,6 +9,8 @@ var playerCount = 2
 var numEnemyOnScreen = 0
 var level: int = 1
 
+@export var usingController = 1
+
 func _winner():
 	print("We have a winner!")
 	var survivorCount = 0;
