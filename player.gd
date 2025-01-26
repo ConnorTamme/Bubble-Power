@@ -138,15 +138,19 @@ func movePlayer(delta):
 # Draw a crosshair at the vector, normalized from user times a distance.
 func getAttackAngle():
 	var mouse = get_viewport().get_mouse_position()
-	var vecX = (mouse.x - position.x)
-	var vecY = (mouse.y - position.y)
+	#var vecX = (mouse.x - position.x)
+	var vecX = Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	#var vecY = (mouse.y - position.y)
+	var vecY = Input.get_joy_axis(0, JOY_AXIS_TRIGGER_LEFT)
 	
 	crosshairPos = Vector2(0, 0)
+
 	
 	crosshairPos.x += vecX
 	crosshairPos.y += vecY
 	
 	crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
+	#crossHair.position = Vector2(crosshairPos.normalized() * crosshairDist)
 
 func _process(delta):
 	if !alive:
