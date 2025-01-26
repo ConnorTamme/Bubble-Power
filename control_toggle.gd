@@ -13,6 +13,9 @@ func _process(delta: float) -> void:
 	else:
 		$Controller.visible = false
 		$Mouse.visible = true
+	
+	if Input.is_action_just_released("controller_y"):
+		Singleton.usingController = !Singleton.usingController
 
 
 func _on_toggled(toggled_on: bool) -> void:

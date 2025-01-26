@@ -9,9 +9,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
+	if Singleton.usingController and Input.is_action_pressed("controller_a"):
+		get_tree().change_scene_to_file(sceneToLoad)
+	if Singleton.usingController and Input.is_action_pressed("controller_b"):
+		get_tree().quit()
+	
+	
 func _on_exit_btn_button_down() -> void:
 	get_tree().quit()
 
