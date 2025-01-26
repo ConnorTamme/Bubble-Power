@@ -2,17 +2,26 @@ extends Sprite2D
 
 class_name Weapon
 
+
 var isPlayerWeapon: bool
-@export var stats = {}
+@export var stats = {
+	"Damage" : 10,
+	"Projectile Speed" : 400,
+	"Range" : 400,
+	"Pellet Count" : 1,
+	"Accuracy" : 0.7,
+	"Attack Speed" : 1,
+	"isMelee" : false
+}
 var modifier
 var canAttack = true
 var rng = RandomNumberGenerator.new()
+var aim: Vector2
 
 static func create_player_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = true
-	weapon.stats = WeaponManager.lookupStats(weaponType)
 	weapon.modifier = StaticStats.player_weapon_modifiers
 	return weapon
 
@@ -21,34 +30,35 @@ static func create_enemy_weapon(weaponType: Enums.WeaponType) -> Weapon:
 	var weapon_scene: PackedScene = load(str("res://weapon.tscn"))
 	var weapon = weapon_scene.instantiate()
 	weapon.isPlayerWeapon = false
-	weapon.stats = WeaponManager.lookupStats(weaponType)
 	weapon.modifier = StaticStats.enemy_weapon_modifiers
 	return weapon
 
 func attack(direction: Vector2) -> void:
-	if !canAttack:
-		return
-	canAttack = false
+	if $attackDelay.is_stopped():
+		$attackDelay.start(stats["Projectile Speed"])
+		$concurrencyFix.start()
+		aim = direction
+		
 	
-	direction = direction/direction.length()
+func fire_gun() -> void:
+	var direction = aim/aim.length()
 	var combinedStats = {
-		Enums.WEAPON_STATS.DAM : stats[Enums.WEAPON_STATS.DAM] + modifier[Enums.WEAPON_STATS.DAM],
-		Enums.WEAPON_STATS.SPEED : stats[Enums.WEAPON_STATS.SPEED] + modifier[Enums.WEAPON_STATS.SPEED],
-		Enums.WEAPON_STATS.RANGE : stats[Enums.WEAPON_STATS.RANGE] + modifier[Enums.WEAPON_STATS.RANGE],
-		Enums.WEAPON_STATS.PELLET_COUNT : stats[Enums.WEAPON_STATS.PELLET_COUNT] + modifier[Enums.WEAPON_STATS.PELLET_COUNT],
-		Enums.WEAPON_STATS.ACCURACY : min(1,stats[Enums.WEAPON_STATS.ACCURACY] + modifier[Enums.WEAPON_STATS.ACCURACY]),
-		Enums.WEAPON_STATS.ATTACK_SPEED : stats[Enums.WEAPON_STATS.ATTACK_SPEED] + modifier[Enums.WEAPON_STATS.ATTACK_SPEED],
+		Enums.WEAPON_STATS.DAM : stats["Damage"] + modifier[Enums.WEAPON_STATS.DAM],
+		Enums.WEAPON_STATS.RANGE : stats["Range"] + modifier[Enums.WEAPON_STATS.RANGE],
+		Enums.WEAPON_STATS.PELLET_COUNT : stats["Pellet Count"] + modifier[Enums.WEAPON_STATS.PELLET_COUNT],
+		Enums.WEAPON_STATS.ACCURACY : min(1,stats["Accuracy"] + modifier[Enums.WEAPON_STATS.ACCURACY]),
+		Enums.WEAPON_STATS.ATTACK_SPEED : stats["Attack Speed"] + modifier[Enums.WEAPON_STATS.ATTACK_SPEED],
 		}
 	if (stats["isMelee"]):
-		combinedStats[Enums.WEAPON_STATS.SPEED] = 0
-	$attackDelay.start(combinedStats[Enums.WEAPON_STATS.ATTACK_SPEED])
+		combinedStats["speed"] = 0
+	
 	
 	for i in combinedStats[Enums.WEAPON_STATS.PELLET_COUNT]:
 		var projectile = Projectile.create_projectile(
 			direction.rotated(rng.randf_range(-1 + combinedStats[Enums.WEAPON_STATS.ACCURACY],
 		 1 - combinedStats[Enums.WEAPON_STATS.ACCURACY])),
-		 rng.randf_range(combinedStats[Enums.WEAPON_STATS.SPEED]*0.66,
-		combinedStats[Enums.WEAPON_STATS.SPEED]),
+		 rng.randf_range(combinedStats["speed"]*0.66,
+		combinedStats["speed"]),
 		 combinedStats[Enums.WEAPON_STATS.DAM],
 		 combinedStats[Enums.WEAPON_STATS.RANGE],
 		 isPlayerWeapon,
@@ -57,11 +67,9 @@ func attack(direction: Vector2) -> void:
 		projectile.set_name("bullet")
 		projectile.global_transform = global_transform
 		get_parent().get_parent().add_child(projectile)
-	
-
 
 func _on_attack_delay_timeout() -> void:
 	canAttack = true
 
 func get_range() -> float:
-	return stats[Enums.WEAPON_STATS.RANGE] + modifier[Enums.WEAPON_STATS.RANGE]
+	return stats["Range"] + modifier[Enums.WEAPON_STATS.RANGE]

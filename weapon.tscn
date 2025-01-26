@@ -4,9 +4,23 @@
 
 [node name="weapon" type="Sprite2D"]
 script = ExtResource("1_uh34h")
+stats = {
+"Accuracy": 0.7,
+"Attack Speed": 2,
+"Damage": 10,
+"Pellet Count": 1,
+"Projectile Speed": 0,
+"Range": 400,
+"isMelee": true
+}
 metadata/_edit_group_ = true
 
 [node name="attackDelay" type="Timer" parent="."]
-wait_time = 0.1
+one_shot = true
+
+[node name="concurrencyFix" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
 
 [connection signal="timeout" from="attackDelay" to="." method="_on_attack_delay_timeout"]
+[connection signal="timeout" from="concurrencyFix" to="." method="fire_gun"]

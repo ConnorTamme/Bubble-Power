@@ -173,6 +173,12 @@ func die() -> void:
 	GlobalSignals.died.emit()
 	alive = false
 	$deathTimer.start()
+	if crossHair != null:
+		crossHair.queue_free()
+	if $HealthBar != null:
+		$HealthBar.queue_free()
+	$AnimatedSprite2D.animation = "death"
+	$AnimatedSprite2D.play()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

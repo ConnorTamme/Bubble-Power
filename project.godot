@@ -22,6 +22,7 @@ WeaponManager="*res://WeaponManager.gd"
 Enums="*res://enums.gd"
 StaticStats="*res://static_stats.gd"
 GlobalSignals="*res://Signal.gd"
+LevelSceneManager="*res://level_scene_manager.gd"
 
 [input]
 

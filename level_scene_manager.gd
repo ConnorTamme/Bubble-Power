@@ -1,25 +1,20 @@
 extends Node
 
 @export var first_scene_index :  int = 0;
-@export var editor_scenes : Array[PackedScene];
+var editor_scenes : Array[PackedScene] = [
+	 preload("res://main.tscn"),
+	preload("res://testing.tscn")
+]
 var loadable_scenes : Array[LoadableScene]
 var current_scene : LoadedScene
 
 var time : float = 0;
-var has_advanced : bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	populate_loadable_scenes_list();
 	load_level_scene_by_index(first_scene_index);
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	time += delta;
-	
-	if(time >= 5 && !has_advanced):
-		has_advanced = true;
-		load_level_scene_by_index(1);
 	
 
 func load_level_scene_by_index(index : int) -> LoadedScene:
@@ -64,13 +59,13 @@ func add_level_scene_to_scene_array(scene : PackedScene) -> int:
 	
 	print(scene_name);
 	
-	var i : int = 0;
+	#var i : int = 0;
 	
-	while i < loadable_scenes.size():
-		if(scene_name == loadable_scenes[i].scene_name):
-			printerr("Duplicate scene with the name: " + name);
-			return -1;
-		i += 1;
+	#while i < loadable_scenes.size():
+		#if(scene_name == loadable_scenes[i].scene_name):
+			#printerr("Duplicate scene with the name: " + name);
+			#return -1;
+		#i += 1;
 	
 	var loadable_scene : LoadableScene = LoadableScene.new();
 	
