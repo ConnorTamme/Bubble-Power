@@ -47,14 +47,16 @@ func GetDefenseUpgrade(btn: Button):
 	var i = randi() % StaticStats.ENT_STATS.size()
 	while(i > 4):
 		i = randi() % StaticStats.ENT_STATS.size()
+	print(i)
 	defStat[btn] = StaticStats.ENT_STATS.keys()[i]
 	btnStat[btn] = StaticStats.ENT_STATS[defStat[btn]]
-	print(btnStat)
-	print(defStat)
+
 	btn.text = defenceUpgradeText[StaticStats.ENT_STATS[defStat[btn]]]
 
 func GetOffenseUpgrade(btn: Button):
 	var i = randi() % StaticStats.WEAPON_STATS.size()
+	while(i > 4):
+		i = randi() % StaticStats.WEAPON_STATS.size()
 	offStat[btn] = StaticStats.WEAPON_STATS.keys()[i]
 	btnStat[btn] = StaticStats.WEAPON_STATS[offStat[btn]]
 	btn.text = offenceUpgradeText[btnStat[btn]]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuimrxqq14qde"]
+
+[ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="1_52vvt"]
+[ext_resource type="Script" path="res://Boss.gd" id="2_nxo2j"]
+[ext_resource type="Texture2D" uid="uid://tld1loga0giq" path="res://insect.png" id="3_rkpe0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb4ob"]
+atlas = ExtResource("3_rkpe0")
+region = Rect2(0, 0, 85, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1js8"]
+atlas = ExtResource("3_rkpe0")
+region = Rect2(85, 0, 85, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh0q1"]
+atlas = ExtResource("3_rkpe0")
+region = Rect2(0, 60, 85, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyhnq"]
+atlas = ExtResource("3_rkpe0")
+region = Rect2(85, 60, 85, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3pv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb4ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1js8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh0q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyhnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyhnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh0q1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1js8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb4ob")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="Enemy1A" instance=ExtResource("1_52vvt")]
+script = ExtResource("2_nxo2j")
+
+[node name="AttackTimer" type="Timer" parent="." index="6"]
+wait_time = 0.85
+one_shot = true
+
+[node name="Flipper" type="Sprite2D" parent="." index="7"]
+
+[node name="Animator" type="AnimatedSprite2D" parent="Flipper" index="0"]
+scale = Vector2(1.85, 1.85)
+sprite_frames = SubResource("SpriteFrames_m3pv8")
+animation = &"idle"
