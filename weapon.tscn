@@ -4,6 +4,7 @@
 
 [node name="weapon" type="Sprite2D"]
 script = ExtResource("1_uh34h")
+stats = null
 metadata/_edit_group_ = true
 
 [node name="attackDelay" type="Timer" parent="."]

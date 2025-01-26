@@ -45,6 +45,8 @@ func CycleUpgrades():
 	
 func GetDefenseUpgrade(btn: Button):
 	var i = randi() % StaticStats.ENT_STATS.size()
+	while(i > 4):
+		i = randi() % StaticStats.ENT_STATS.size()
 	defStat[btn] = StaticStats.ENT_STATS.keys()[i]
 	btnStat[btn] = StaticStats.ENT_STATS[defStat[btn]]
 	print(btnStat)
