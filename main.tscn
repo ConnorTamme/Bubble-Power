@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://jtbgpgtgcoy3"]
+[gd_scene load_steps=8 format=3 uid="uid://jtbgpgtgcoy3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_5jfyn"]
 [ext_resource type="PackedScene" uid="uid://txylmowsjix5" path="res://player.tscn" id="1_foxcj"]
 [ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://enemy.tscn" id="2_xxjoi"]
 [ext_resource type="PackedScene" uid="uid://dm4mo8m4l580c" path="res://Boss.tscn" id="3_n2gl2"]
-[ext_resource type="PackedScene" uid="uid://gppu81t8ykst" path="res://crosshair.tscn" id="4_4fq4d"]
+[ext_resource type="PackedScene" path="res://DeathBanner.tscn" id="4_cbhwb"]
+[ext_resource type="PackedScene" uid="uid://cra3lusqpetg6" path="res://VictoryBanner.tscn" id="5_fcqle"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpeb3"]
 _data = {
@@ -16,8 +17,8 @@ point_count = 5
 script = ExtResource("1_5jfyn")
 enemy = Array[PackedScene]([ExtResource("2_xxjoi")])
 boss = ExtResource("3_n2gl2")
-death_banner = ExtResource("4_4fq4d")
-victory_banner = ExtResource("4_4fq4d")
+death_banner = ExtResource("4_cbhwb")
+victory_banner = ExtResource("5_fcqle")
 
 [node name="Player" parent="." instance=ExtResource("1_foxcj")]
 position = Vector2(173, 334)

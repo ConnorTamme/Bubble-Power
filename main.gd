@@ -16,6 +16,9 @@ var bossesSpawned = 0
 var bossesKilled = 0
 var shouldSpawnBosses:bool = (to_spawn % 2 == 0)
 var player_died = false
+@export var endDelay = 2
+var isWinner: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$MobTimer.start(spawn_rate)
@@ -59,10 +62,12 @@ func _on_mob_timer_timeout() -> void:
 func _on_player_death() -> void:
 	$MobTimer.stop()
 	player_died = true
-	add_child(death_banner.instantiate())
 	Singleton.level = 1
 	StaticStats.ResetAllStats()
 	$EndTimer.start()
+	isWinner = false
+	$EndTimer/DeathBanner.visible = true
+	$EndTimer.start(endDelay)
 
 func _on_enemy_death() -> void:
 	killed += 1
@@ -78,7 +83,6 @@ func _on_enemy_death() -> void:
 func _on_boss_death() -> void:
 	bossesKilled += 1
 	if bossesKilled == bossesToSpawn and killed == to_spawn:
-		add_child(victory_banner.instantiate())
 		$EndTimer.start()
 		Singleton.level += 1
 		StaticStats.IncrementEnemyStats()
@@ -88,5 +92,6 @@ func _on_end_timer_timeout() -> void:
 	if player_died:
 		get_tree().change_scene_to_file("res://start_screen.tscn")
 	else:
-		GlobalSignals.nextScene.emit()
-	
+		isWinner = true
+		$EndTimer/VictoryBanner.visible = true
+		$EndTimer.start(endDelay)

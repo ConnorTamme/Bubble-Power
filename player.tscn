@@ -90,6 +90,111 @@ animations = [{
 }, {
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_2aood")
 }],
 "loop": true,
 "name": &"death",
@@ -167,6 +272,8 @@ motion_mode = 1
 platform_floor_layers = 4294967285
 platform_wall_layers = 1
 script = ExtResource("1_62uao")
+shieldRegenRate = 100
+baseShield = 5
 crossHairObj = ExtResource("2_wvje8")
 weaponType = ExtResource("3_8big8")
 metadata/_edit_group_ = true
@@ -215,3 +322,4 @@ one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="deathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="shieldTimer" to="." method="_on_shield_timer_timeout"]
