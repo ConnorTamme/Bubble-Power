@@ -1,6 +1,6 @@
 # Credits
-Anthony Blower - sleep deprived   
-Connor Tamme - can't handle spice  
+Anthony Blower - gave sane advice but we ignored it     
+Connor Tamme - AI guy  
 Adhyan Patel - git wizard  
 Jooseph Medernach - controller support    
 Siddharth Padakanti - art direction  
