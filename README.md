@@ -5,7 +5,7 @@ Adhyan Patel - git wizard
 Jooseph Medernach - controller support    
 Siddharth Padakanti - art direction  
 Aaron Macadaeg- music and score  
-
+Amirali Zandkarimi - idea generator  
 
 # Discredits
 Aidan Warring (got us all sick, literally)  
