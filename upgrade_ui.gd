@@ -2,7 +2,9 @@ extends Node2D
 
 var screen_size
 var DEBUG = false
-var statText: String 
+var statText: String
+#const menu_update_wait_time = 0.1
+#var remaining_till_menu_update = menu_update_wait_time
 
 var defenceUpgradeText = {
 	StaticStats.ENT_STATS.HEALTH : "MAX HEALTH++",
@@ -30,21 +32,46 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	CycleUpgrades()
 	ResetStatText()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_pressed("controller_x"):
-		$UpgradeABtn.button_pressed = true
-		$UpgradeBBtn.button_pressed = false
-		$UpgradeCBtn.button_pressed = false
-	if Input.is_action_pressed("controller_y"):
+	
+func MenuMoveUp():
+	if $UpgradeCBtn.button_pressed:
 		$UpgradeABtn.button_pressed = false
 		$UpgradeBBtn.button_pressed = true
 		$UpgradeCBtn.button_pressed = false
-	if Input.is_action_pressed("controller_b"):
+	elif $UpgradeBBtn.button_pressed:
+		$UpgradeABtn.button_pressed = true
+		$UpgradeBBtn.button_pressed = false
+		$UpgradeCBtn.button_pressed = false
+	elif not $UpgradeABtn.button_pressed:
 		$UpgradeABtn.button_pressed = false
 		$UpgradeBBtn.button_pressed = false
 		$UpgradeCBtn.button_pressed = true
+	pass
+	
+func MenuMoveDown():
+	if $UpgradeABtn.button_pressed:
+		$UpgradeABtn.button_pressed = false
+		$UpgradeBBtn.button_pressed = true
+		$UpgradeCBtn.button_pressed = false
+	elif $UpgradeBBtn.button_pressed:
+		$UpgradeABtn.button_pressed = false
+		$UpgradeBBtn.button_pressed = false
+		$UpgradeCBtn.button_pressed = true
+	elif not $UpgradeCBtn.button_pressed:
+		$UpgradeABtn.button_pressed = true
+		$UpgradeBBtn.button_pressed = false
+		$UpgradeCBtn.button_pressed = false
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	#remaining_till_menu_update -= delta
+	#if remaining_till_menu_update <= 0.0:
+	if Input.is_action_just_pressed("menu_up"):
+		MenuMoveUp()
+	if Input.is_action_just_pressed("menu_down"):
+		MenuMoveDown()
+		#remaining_till_menu_update = menu_update_wait_time
 	if Input.is_action_pressed("controller_a"):
 		if $UpgradeABtn.button_pressed or $UpgradeBBtn.button_pressed or $UpgradeCBtn.button_pressed:
 			_on_select_and_continue_button_up()

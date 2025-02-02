@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://m12iblo6r6v0"]
+[gd_scene load_steps=13 format=3 uid="uid://m12iblo6r6v0"]
 
 [ext_resource type="Script" path="res://upgrade_ui.gd" id="1_04tsd"]
 [ext_resource type="Theme" uid="uid://d4anuxoy31i5m" path="res://ButtonTheme.tres" id="2_mena2"]
-[ext_resource type="Texture2D" uid="uid://dsj22ofl0h8h8" path="res://hp_icon.png" id="2_yfmm4"]
-[ext_resource type="Texture2D" uid="uid://c0qis8wrtcti6" path="res://moveSpeed_icon.webp" id="3_5v37e"]
-[ext_resource type="FontFile" uid="uid://dawksoj6aosvj" path="res://Jhon Cream.ttf" id="4_0l0yh"]
-[ext_resource type="Texture2D" uid="uid://fwd8lekmkp7v" path="res://shield_icon.png" id="5_q74im"]
-[ext_resource type="Texture2D" uid="uid://v281durcf5nu" path="res://damage.png" id="6_26k04"]
-[ext_resource type="Texture2D" uid="uid://dvk05qbth6h8v" path="res://attackSpeed.png" id="7_1x6ev"]
-[ext_resource type="Texture2D" uid="uid://b44dxhm1oq4jj" path="res://range.png" id="8_4guc5"]
-[ext_resource type="Texture2D" uid="uid://djbtcgk5s4pd2" path="res://projectile_count.png" id="9_swbbh"]
-[ext_resource type="Texture2D" uid="uid://bbs4jtpj6i3ps" path="res://accuracy.png" id="10_8oxfq"]
+[ext_resource type="Texture2D" uid="uid://cd631y6l3b054" path="res://hp_icon.png" id="2_yfmm4"]
+[ext_resource type="Texture2D" uid="uid://bkxw7ukuvgl50" path="res://moveSpeed_icon.webp" id="3_5v37e"]
+[ext_resource type="FontFile" uid="uid://ccbgp2yit3pkj" path="res://Jhon Cream.ttf" id="4_0l0yh"]
+[ext_resource type="Texture2D" uid="uid://bk17dnprn01tc" path="res://shield_icon.png" id="5_q74im"]
+[ext_resource type="Texture2D" uid="uid://c7bittj3f0e1" path="res://damage.png" id="6_26k04"]
+[ext_resource type="Texture2D" uid="uid://beryahgu3gaaf" path="res://attackSpeed.png" id="7_1x6ev"]
+[ext_resource type="Texture2D" uid="uid://cedfih2ecbirt" path="res://range.png" id="8_4guc5"]
+[ext_resource type="Texture2D" uid="uid://c2n1yqbwv57d" path="res://projectile_count.png" id="9_swbbh"]
+[ext_resource type="Texture2D" uid="uid://buv4oohnmkpan" path="res://accuracy.png" id="10_8oxfq"]
+[ext_resource type="Texture2D" uid="uid://cstuhdr5pmk6h" path="res://buttons-down.png" id="12_5n41e"]
 
 [node name="Upgrade UI" type="Node2D"]
 script = ExtResource("1_04tsd")
@@ -248,6 +249,15 @@ theme_override_fonts/font = ExtResource("4_0l0yh")
 theme_override_font_sizes/font_size = 40
 text = "WEAPON STAT BONUSES:"
 vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 408.0
+offset_top = 508.0
+offset_right = 481.0
+offset_bottom = 575.0
+texture = ExtResource("12_5n41e")
+expand_mode = 1
+stretch_mode = 4
 
 [connection signal="toggled" from="UpgradeABtn" to="." method="_on_upgrade_a_btn_toggled"]
 [connection signal="toggled" from="UpgradeBBtn" to="." method="_on_upgrade_b_btn_toggled"]
