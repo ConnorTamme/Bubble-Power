@@ -80,7 +80,7 @@ func move(delta: float) -> void:
 			if player.position.distance_to(position) < enemyStats["range"]/2:
 				ai_state = states.RETREAT
 				if($maxRetreatTime.is_stopped()):
-					$maxRetreatTime.start()
+					$maxRetreatTime.start(3)
 			elif player.position.distance_to(position) > enemyStats["range"]:
 				ai_state = states.APPROACH
 			else:
@@ -93,6 +93,7 @@ func move(delta: float) -> void:
 			position.x += direction.x
 			position.y += direction.y
 			#var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
+			print(enemyStats["range"])
 			if (position.distance_to(player.position) < enemyStats["range"]):
 				ai_state = states.PREPARE
 				startPrepareTimer()
@@ -105,9 +106,7 @@ func move(delta: float) -> void:
 			#var player_location = Vector2(player.position.x - position.x, player.position.y - position.y)
 			if position.distance_to(player.position) > enemyStats["range"]:
 				ai_state = states.APPROACH
-			elif position.distance_to(player.position) > enemyStats["range"]:
-				ai_state = states.PREPARE
-				startPrepareTimer()
+
 	position = position.clamp(Vector2.ZERO, screen_size) # stop player from leaving screen.
 	
 func _on_invincible_delay_timeout() -> void:

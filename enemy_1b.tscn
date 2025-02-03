@@ -69,7 +69,7 @@ enemyStats = {
 "health": 2,
 "moveSpeed": 250,
 "prepareTime": 1,
-"range": 300,
+"range": 400,
 "recoveryTime": 2
 }
 

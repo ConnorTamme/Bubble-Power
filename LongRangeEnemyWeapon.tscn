@@ -11,6 +11,6 @@ stats = {
 "Damage": 5,
 "Pellet Count": 1,
 "Projectile Speed": 500,
-"Range": 400,
+"Range": 700,
 "isMelee": false
 }
