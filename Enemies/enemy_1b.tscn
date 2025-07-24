@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7u8g0npw7702"]
+
+[ext_resource type="PackedScene" uid="uid://bvetq7ixe7r7f" path="res://Enemies/enemy.tscn" id="1_ux5yh"]
+[ext_resource type="Script" uid="uid://cm2e3bvx16ucl" path="res://Enemies/enemy_1b.gd" id="2_s16b7"]
+[ext_resource type="Texture2D" uid="uid://cy0qoma5gymgk" path="res://Assets/Images/insect.png" id="3_3e0gm"]
+[ext_resource type="Texture2D" uid="uid://br7p7k7m13rrh" path="res://Assets/Images/evil_bubble.png" id="4_reh5c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xb1e"]
+atlas = ExtResource("4_reh5c")
+region = Rect2(8, 0, 44, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1f3o"]
+atlas = ExtResource("4_reh5c")
+region = Rect2(53, 0, 44, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sybct"]
+atlas = ExtResource("4_reh5c")
+region = Rect2(98, 0, 44, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mahcb"]
+atlas = ExtResource("4_reh5c")
+region = Rect2(143, 0, 44, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fri0h"]
+atlas = ExtResource("4_reh5c")
+region = Rect2(8, 60, 44, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_co3cv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xb1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1f3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sybct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mahcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fri0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fri0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mahcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sybct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1f3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xb1e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="Enemy_1B" instance=ExtResource("1_ux5yh")]
+script = ExtResource("2_s16b7")
+enemyStats = {
+"health": 2,
+"moveSpeed": 250,
+"prepareTime": 1,
+"range": 400,
+"recoveryTime": 2
+}
+
+[node name="Sprite2D" parent="." index="0"]
+visible = false
+texture = ExtResource("3_3e0gm")
+hframes = 2
+vframes = 2
+
+[node name="AttackTimer" type="Timer" parent="." index="6"]
+wait_time = 0.85
+one_shot = true
+
+[node name="Flipper" type="Sprite2D" parent="." index="7"]
+
+[node name="Animator" type="AnimatedSprite2D" parent="Flipper" index="0"]
+scale = Vector2(1.85, 1.85)
+sprite_frames = SubResource("SpriteFrames_co3cv")
+animation = &"idle"

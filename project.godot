@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="Bubble Power"
-run/main_scene="res://start_screen.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="res://Scenes/start_screen.tscn"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Singleton="*res://singleton.gd"
-WeaponManager="*res://WeaponManager.gd"
-Enums="*res://enums.gd"
-StaticStats="*res://static_stats.gd"
-GlobalSignals="*res://Signal.gd"
-GlobalAudioStreamPlayer="*res://audio_stream_player.tscn"
+Singleton="*res://Globals/singleton.gd"
+WeaponManager="*res://Globals/WeaponManager.gd"
+Enums="*res://Globals/enums.gd"
+StaticStats="*res://Globals/static_stats.gd"
+GlobalSignals="*res://Globals/Signal.gd"
+GlobalAudioStreamPlayer="*res://Globals/audio_stream_player.tscn"
 
 [display]
 

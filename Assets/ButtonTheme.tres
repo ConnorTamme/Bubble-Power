@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://d4anuxoy31i5m"]
+
+[ext_resource type="Texture2D" uid="uid://8lpx7ua54mfx" path="res://Assets/Images/button_clicked.png" id="1_m2ntg"]
+[ext_resource type="Texture2D" uid="uid://bn68dksyrpgjq" path="res://Assets/Images/button_hover.png" id="2_neigc"]
+[ext_resource type="Texture2D" uid="uid://rlivcjflu324" path="res://Assets/Images/button_norm.png" id="3_rcswa"]
+[ext_resource type="FontFile" uid="uid://xsev5vf0krkb" path="res://Assets/Jhon Cream.ttf" id="4_42sl4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n43iv"]
+texture = ExtResource("1_m2ntg")
+region_rect = Rect2(8.67781, 41.9426, 279.339, 65.2893)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_augfd"]
+texture = ExtResource("2_neigc")
+region_rect = Rect2(4.54558, 43.5954, 281.818, 64.4628)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_umf5p"]
+texture = ExtResource("3_rcswa")
+region_rect = Rect2(7.02492, 41.9426, 278.513, 65.2893)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dfmii"]
+texture = ExtResource("3_rcswa")
+region_rect = Rect2(6.37565, 46.3954, 278.971, 59.552)
+modulate_color = Color(0.354696, 0.593837, 0.843929, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4jf0e"]
+texture = ExtResource("2_neigc")
+region_rect = Rect2(7.85136, 44.4219, 277.686, 62.8099)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_anlgr"]
+texture = ExtResource("3_rcswa")
+region_rect = Rect2(8.67781, 45.2483, 276.86, 59.5042)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dp8f5"]
+texture = ExtResource("1_m2ntg")
+region_rect = Rect2(7.85136, 43.5954, 281.818, 64.4628)
+
+[resource]
+/styles/button_clicked = SubResource("StyleBoxTexture_n43iv")
+/styles/button_hover = SubResource("StyleBoxTexture_augfd")
+/styles/button_norm = SubResource("StyleBoxTexture_umf5p")
+Button/fonts/font = ExtResource("4_42sl4")
+Button/styles/disabled = SubResource("StyleBoxTexture_dfmii")
+Button/styles/hover = SubResource("StyleBoxTexture_4jf0e")
+Button/styles/normal = SubResource("StyleBoxTexture_anlgr")
+Button/styles/pressed = SubResource("StyleBoxTexture_dp8f5")

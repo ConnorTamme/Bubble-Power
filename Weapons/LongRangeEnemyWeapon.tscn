@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccmarr0s1ecp8"]
+
+[ext_resource type="PackedScene" uid="uid://smefu35yi3ph" path="res://Weapons/weapon.tscn" id="1_3njah"]
+[ext_resource type="PackedScene" uid="uid://co388chs4ejow" path="res://Projectiles/evil_bubble_projectile.tscn" id="2_ptmun"]
+
+[node name="weapon2" instance=ExtResource("1_3njah")]
+projectile = ExtResource("2_ptmun")
+stats = {
+"Accuracy": 0.95,
+"Attack Speed": 2,
+"Damage": 5,
+"Pellet Count": 1,
+"Projectile Speed": 500,
+"Range": 700,
+"isMelee": false
+}
